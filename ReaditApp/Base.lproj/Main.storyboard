@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReaditApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostViewController" customModule="ReaditApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -129,6 +129,15 @@
                             <constraint firstItem="30d-2k-sjw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="gI2-st-20b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="commentsNumber" destination="d6i-2W-fji" id="KmO-yb-rr1"/>
+                        <outlet property="domain" destination="Usl-lE-3ga" id="NeB-QD-ej7"/>
+                        <outlet property="image" destination="DwE-To-8tn" id="Br8-B2-j7T"/>
+                        <outlet property="postTitle" destination="ni4-2a-xrg" id="hBk-b5-zeE"/>
+                        <outlet property="rating" destination="fdf-et-LK7" id="dbb-SD-nwQ"/>
+                        <outlet property="timePassed" destination="iWd-14-bnU" id="TMC-nR-5Kf"/>
+                        <outlet property="username" destination="4hr-83-eKE" id="drz-71-xHN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
