@@ -81,8 +81,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="DwE-To-8tn">
-                                        <rect key="frame" x="0.0" y="75" width="418" height="115"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DwE-To-8tn">
+                                        <rect key="frame" x="0.0" y="76.666666666666657" width="418" height="112"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="DwE-To-8tn" secondAttribute="height" multiplier="131:36" id="nec-KV-QW2"/>
                                         </constraints>
@@ -146,9 +146,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="500" height="404"/>
         <image name="arrowshape.up.fill" catalog="system" width="123" height="128"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="121"/>
         <systemColor name="secondarySystemBackgroundColor">

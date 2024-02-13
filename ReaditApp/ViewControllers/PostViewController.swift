@@ -27,32 +27,36 @@ class PostViewController: UIViewController {
     private func setPostValues() {
         let apiService = APIService()
         
-        apiService.fetchPosts(subreddit: "ios", limit: 1, after: nil) { [weak self] result in
-            switch result {
-            case .success(let redditResponse):
-                for post in redditResponse.data.children {
-                    // DispatchQueue.main.async {
-                    self?.username.text = post.data.username
-                    self?.postTitle.text = post.data.title
-                    self?.timePassed.text = post.data.timePassed
-                    self?.domain.text = post.data.domain
-                    
-                    self?.rating.setTitle(String(post.data.rating), for: .normal)
-                    self?.commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
-                    
-                    if let url = URL(string: post.data.imageURL) {
-                        let placeholder = UIImage(systemName: "photo.fill")
-                        self?.image.kf.setImage(with: url, placeholder: placeholder)
+        Task {
+            do {
+                let redditResponse = try await apiService.fetchPosts(subreddit: "ios", limit: 1, after: nil)
+                if let post = redditResponse.data.children.first {
+                    DispatchQueue.main.async { [weak self] in
+                        self?.updateUI(with: post)
                     }
-                    
-                    let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
-                    let bookmarkImage = UIImage(systemName: bookmarkImageName)
-                    self?.bookmark.setImage(bookmarkImage, for: .normal)
                 }
-            case .failure(let error):
+            } catch {
                 print("Failed with error: \(error)")
             }
         }
+    }
+    
+    private func updateUI(with post: RedditPost) {
+        username.text = post.data.username
+        postTitle.text = post.data.title
+        timePassed.text = post.data.timePassed
+        domain.text = post.data.domain
+        rating.setTitle(String(post.data.rating), for: .normal)
+        commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
+        
+        self.image.image = UIImage(systemName: "photo.fill")
+        if let url = URL(string: post.data.imageURL) {
+            image.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
+        }
+        
+        let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
+        let bookmarkImage = UIImage(systemName: bookmarkImageName)
+        bookmark.setImage(bookmarkImage, for: .normal)
     }
 
 }
