@@ -29,7 +29,7 @@ class PostViewController: UIViewController {
         
         Task {
             do {
-                let redditResponse = try await apiService.fetchPosts(subreddit: "ios", limit: 1, after: nil)
+                let redditResponse = try await apiService.fetchPosts(subreddit: "capybara", limit: 1, after: nil)
                 if let post = redditResponse.data.children.first {
                     DispatchQueue.main.async { [weak self] in
                         self?.updateUI(with: post)
@@ -49,7 +49,7 @@ class PostViewController: UIViewController {
         rating.setTitle(String(post.data.rating), for: .normal)
         commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
         
-        self.image.image = UIImage(systemName: "photo.fill")
+        image.image = UIImage(systemName: "photo.fill")
         if let url = URL(string: post.data.imageURL) {
             image.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
