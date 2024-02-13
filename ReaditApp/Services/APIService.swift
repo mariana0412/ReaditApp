@@ -10,10 +10,14 @@ import Foundation
 class APIService {
     func fetchPosts(subreddit: String, limit: Int, after: String?, completion: @escaping (Result<RedditResponse, Error>) -> Void) {
         var components = URLComponents(string: "https://www.reddit.com/r/\(subreddit)/top.json")
-        var queryItems: [URLQueryItem] = [URLQueryItem(name: "limit", value: "\(limit)")]
-        if let after = after {
-            queryItems.append(URLQueryItem(name: "after", value: after))
+        var queryItems: [URLQueryItem] = [
+            URLQueryItem(name: "limit", value: "\(limit)")
+        ]
+        
+        if let afterId = after {
+            queryItems.append(URLQueryItem(name: "after", value: afterId))
         }
+        
         components?.queryItems = queryItems
         
         guard let url = components?.url else {

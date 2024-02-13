@@ -9,4 +9,9 @@ import Foundation
 
 struct RedditPost: Codable {
     let data: PostData
+    var saved: Bool = Bool.random()
+    
+    enum CodingKeys: String, CodingKey {
+        case data
+    }
 }

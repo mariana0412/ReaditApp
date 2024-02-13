@@ -130,6 +130,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="bookmark" destination="Rpw-bx-Ris" id="Yms-YZ-j82"/>
                         <outlet property="commentsNumber" destination="d6i-2W-fji" id="KmO-yb-rr1"/>
                         <outlet property="domain" destination="Usl-lE-3ga" id="NeB-QD-ej7"/>
                         <outlet property="image" destination="DwE-To-8tn" id="Br8-B2-j7T"/>

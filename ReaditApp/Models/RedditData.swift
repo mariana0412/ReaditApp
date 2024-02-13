@@ -9,4 +9,5 @@ import Foundation
 
 struct RedditData: Codable {
     let children: [RedditPost]
+    let after: String?
 }
