@@ -8,10 +8,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Post View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="ReaditApp" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="PostViewController" customModule="ReaditApp" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="428" height="926"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -81,8 +81,8 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Image" translatesAutoresizingMaskIntoConstraints="NO" id="DwE-To-8tn">
-                                        <rect key="frame" x="0.0" y="75" width="418" height="115"/>
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="DwE-To-8tn">
+                                        <rect key="frame" x="0.0" y="76.666666666666657" width="418" height="112"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="DwE-To-8tn" secondAttribute="height" multiplier="131:36" id="nec-KV-QW2"/>
                                         </constraints>
@@ -129,6 +129,16 @@
                             <constraint firstItem="30d-2k-sjw" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="25" id="gI2-st-20b"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="bookmark" destination="Rpw-bx-Ris" id="Yms-YZ-j82"/>
+                        <outlet property="commentsNumber" destination="d6i-2W-fji" id="KmO-yb-rr1"/>
+                        <outlet property="domain" destination="Usl-lE-3ga" id="NeB-QD-ej7"/>
+                        <outlet property="image" destination="DwE-To-8tn" id="Br8-B2-j7T"/>
+                        <outlet property="postTitle" destination="ni4-2a-xrg" id="hBk-b5-zeE"/>
+                        <outlet property="rating" destination="fdf-et-LK7" id="dbb-SD-nwQ"/>
+                        <outlet property="timePassed" destination="iWd-14-bnU" id="TMC-nR-5Kf"/>
+                        <outlet property="username" destination="4hr-83-eKE" id="drz-71-xHN"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -136,9 +146,9 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Image" width="500" height="404"/>
         <image name="arrowshape.up.fill" catalog="system" width="123" height="128"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
+        <image name="photo" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="121"/>
         <systemColor name="secondarySystemBackgroundColor">
