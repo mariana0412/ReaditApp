@@ -92,14 +92,30 @@
 			path = Image;
 			sourceTree = "<group>";
 		};
+		CA3D59782B7C136E0094CA8B /* Post */ = {
+			isa = PBXGroup;
+			children = (
+				CAA1EF7A2B7AA86E00385BF7 /* RedditPost.swift */,
+				CAA1EF7C2B7AA87A00385BF7 /* PostData.swift */,
+			);
+			path = Post;
+			sourceTree = "<group>";
+		};
+		CA3D59792B7C13810094CA8B /* Reddit */ = {
+			isa = PBXGroup;
+			children = (
+				CAA1EF762B7AA85400385BF7 /* RedditResponse.swift */,
+				CAA1EF782B7AA86200385BF7 /* RedditData.swift */,
+			);
+			path = Reddit;
+			sourceTree = "<group>";
+		};
 		CAA1EF752B7AA82F00385BF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CA3D59792B7C13810094CA8B /* Reddit */,
+				CA3D59782B7C136E0094CA8B /* Post */,
 				CA1C7E292B7BD958002E592E /* Image */,
-				CAA1EF762B7AA85400385BF7 /* RedditResponse.swift */,
-				CAA1EF782B7AA86200385BF7 /* RedditData.swift */,
-				CAA1EF7A2B7AA86E00385BF7 /* RedditPost.swift */,
-				CAA1EF7C2B7AA87A00385BF7 /* PostData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
