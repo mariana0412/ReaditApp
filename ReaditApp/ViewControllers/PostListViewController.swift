@@ -37,9 +37,7 @@ class PostListViewController: UIViewController {
         switch segue.identifier {
         case Const.goToPostViewSegueID:
             let postVC = segue.destination as! PostDetailsViewController
-            DispatchQueue.main.async {
-                postVC.config(with: self.selectedPost!)
-            }
+            postVC.redditPost = self.selectedPost!
         default:
             break
         }

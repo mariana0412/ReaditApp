@@ -33,142 +33,18 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g3E-aI-IV0">
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFS-ws-x7c" customClass="PostView" customModule="ReaditApp">
                                 <rect key="frame" x="0.0" y="108" width="393" height="300"/>
-                                <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="PAQ-mh-tJs">
-                                        <rect key="frame" x="5" y="0.0" width="383" height="34.333333333333336"/>
-                                        <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="9" translatesAutoresizingMaskIntoConstraints="NO" id="Wgc-hi-WyU">
-                                                <rect key="frame" x="0.0" y="0.0" width="235" height="34.333333333333336"/>
-                                                <subviews>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="u/Notdovvn" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4hr-83-eKE">
-                                                        <rect key="frame" x="0.0" y="0.0" width="92.333333333333329" height="34.333333333333336"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CEc-5x-CYQ">
-                                                        <rect key="frame" x="101.33333333333333" y="0.0" width="8" height="34.333333333333336"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="15h" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iWd-14-bnU">
-                                                        <rect key="frame" x="118.33333333333333" y="0.0" width="28.666666666666671" height="34.333333333333336"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="•" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z6C-sD-HBW">
-                                                        <rect key="frame" x="156" y="0.0" width="8" height="34.333333333333336"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="i.redd.it" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Usl-lE-3ga">
-                                                        <rect key="frame" x="173" y="0.0" width="62" height="34.333333333333336"/>
-                                                        <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
-                                                        <color key="textColor" systemColor="systemGrayColor"/>
-                                                        <nil key="highlightedColor"/>
-                                                    </label>
-                                                </subviews>
-                                            </stackView>
-                                            <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hbW-an-FYz">
-                                                <rect key="frame" x="336.66666666666669" y="0.0" width="46.333333333333314" height="34.333333333333336"/>
-                                                <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Rpw-bx-Ris">
-                                                        <rect key="frame" x="0.0" y="0.0" width="46.333333333333336" height="34.333333333333336"/>
-                                                        <state key="normal" title="Button"/>
-                                                        <buttonConfiguration key="configuration" style="plain" image="bookmark" catalog="system">
-                                                            <color key="baseForegroundColor" systemColor="systemGrayColor"/>
-                                                        </buttonConfiguration>
-                                                    </button>
-                                                </subviews>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="hbW-an-FYz" secondAttribute="trailing" id="aR7-mS-YNa"/>
-                                            <constraint firstItem="Wgc-hi-WyU" firstAttribute="leading" secondItem="PAQ-mh-tJs" secondAttribute="leading" id="zlK-cL-Wg1"/>
-                                        </constraints>
-                                    </stackView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Anyone else think this should show the battery percentage of all of your devices?" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ni4-2a-xrg">
-                                        <rect key="frame" x="5" y="33" width="383" height="38.333333333333343"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                        <nil key="textColor"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="c3p-zh-6Yq">
-                                        <rect key="frame" x="5" y="260.66666666666669" width="383" height="34.333333333333314"/>
-                                        <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fdf-et-LK7">
-                                                <rect key="frame" x="0.0" y="0.0" width="125" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="arrowshape.up.fill" catalog="system" title=" 1.0k">
-                                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="d6i-2W-fji">
-                                                <rect key="frame" x="125" y="0.0" width="113" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system" title=" 85">
-                                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ffV-t7-i5U">
-                                                <rect key="frame" x="238" y="0.0" width="145" height="34.333333333333336"/>
-                                                <state key="normal" title="Button"/>
-                                                <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title=" Share">
-                                                    <color key="baseForegroundColor" systemColor="systemGrayColor"/>
-                                                </buttonConfiguration>
-                                            </button>
-                                        </subviews>
-                                    </stackView>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photo" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="GdL-pw-m1i">
-                                        <rect key="frame" x="5" y="78" width="383" height="172"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="175" id="uIS-Uv-HtP"/>
-                                        </constraints>
-                                    </imageView>
-                                </subviews>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <constraints>
-                                    <constraint firstItem="PAQ-mh-tJs" firstAttribute="leading" secondItem="g3E-aI-IV0" secondAttribute="leading" constant="5" id="4Vu-p2-HcL"/>
-                                    <constraint firstItem="ni4-2a-xrg" firstAttribute="leading" secondItem="g3E-aI-IV0" secondAttribute="leading" constant="5" id="5jD-bO-HtF"/>
-                                    <constraint firstAttribute="trailing" secondItem="c3p-zh-6Yq" secondAttribute="trailing" constant="5" id="7EO-YZ-NHZ"/>
-                                    <constraint firstAttribute="bottom" secondItem="c3p-zh-6Yq" secondAttribute="bottom" constant="5" id="Ej2-Wj-VeG"/>
-                                    <constraint firstItem="PAQ-mh-tJs" firstAttribute="top" secondItem="g3E-aI-IV0" secondAttribute="top" id="I9v-YV-bmT"/>
-                                    <constraint firstAttribute="trailing" secondItem="ni4-2a-xrg" secondAttribute="trailing" constant="5" id="N8C-l2-q6K"/>
-                                    <constraint firstItem="PAQ-mh-tJs" firstAttribute="top" secondItem="g3E-aI-IV0" secondAttribute="top" id="XxG-vM-w9W"/>
-                                    <constraint firstAttribute="trailing" secondItem="PAQ-mh-tJs" secondAttribute="trailing" constant="5" id="gIk-dA-k32"/>
-                                    <constraint firstItem="GdL-pw-m1i" firstAttribute="leading" secondItem="g3E-aI-IV0" secondAttribute="leading" constant="5" id="iaR-FB-26g"/>
-                                    <constraint firstAttribute="height" constant="300" id="nxd-R1-FO2"/>
-                                    <constraint firstItem="c3p-zh-6Yq" firstAttribute="leading" secondItem="g3E-aI-IV0" secondAttribute="leading" constant="5" id="rqA-7E-oIW"/>
-                                    <constraint firstItem="ni4-2a-xrg" firstAttribute="top" secondItem="g3E-aI-IV0" secondAttribute="top" constant="33" id="t4x-FZ-38K"/>
-                                    <constraint firstItem="GdL-pw-m1i" firstAttribute="top" secondItem="ni4-2a-xrg" secondAttribute="bottom" constant="5" id="tpO-KX-CXZ"/>
-                                    <constraint firstItem="GdL-pw-m1i" firstAttribute="centerX" secondItem="g3E-aI-IV0" secondAttribute="centerX" id="wxl-kS-2Ph"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" name="Color"/>
-                        <constraints>
-                            <constraint firstItem="g3E-aI-IV0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" id="Pyt-H8-UUv"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="g3E-aI-IV0" secondAttribute="trailing" id="XPP-nz-pKi"/>
-                            <constraint firstItem="g3E-aI-IV0" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="5" id="fPu-cv-B5c"/>
-                            <constraint firstItem="g3E-aI-IV0" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="vaT-fN-JrF"/>
-                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="kqw-le-oa1"/>
                     <connections>
-                        <outlet property="bookmark" destination="Rpw-bx-Ris" id="Yms-YZ-j82"/>
-                        <outlet property="commentsNumber" destination="d6i-2W-fji" id="KmO-yb-rr1"/>
-                        <outlet property="domain" destination="Usl-lE-3ga" id="NeB-QD-ej7"/>
-                        <outlet property="image" destination="GdL-pw-m1i" id="HPC-6a-DcU"/>
-                        <outlet property="postTitle" destination="ni4-2a-xrg" id="hBk-b5-zeE"/>
-                        <outlet property="rating" destination="fdf-et-LK7" id="dbb-SD-nwQ"/>
-                        <outlet property="timePassed" destination="iWd-14-bnU" id="TMC-nR-5Kf"/>
-                        <outlet property="username" destination="4hr-83-eKE" id="drz-71-xHN"/>
+                        <outlet property="postView" destination="qFS-ws-x7c" id="6yj-XT-geO"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -355,9 +231,9 @@
                                             <outlet property="bookmark" destination="GNz-5f-B3W" id="Qg1-Cp-13A"/>
                                             <outlet property="commentsNumber" destination="Boc-fl-sSR" id="amd-I3-s7d"/>
                                             <outlet property="domain" destination="rCe-IY-KLO" id="Mmf-Et-giB"/>
+                                            <outlet property="postImage" destination="kK1-EG-BlD" id="oY9-17-X9f"/>
                                             <outlet property="postTitle" destination="rTj-xF-jux" id="hhu-Dz-Z3V"/>
                                             <outlet property="rating" destination="j0B-AS-WUD" id="rWv-Rf-ySv"/>
-                                            <outlet property="redditPostImage" destination="kK1-EG-BlD" id="oY9-17-X9f"/>
                                             <outlet property="timePassed" destination="Dgc-J4-HV9" id="mcg-fC-Jp5"/>
                                             <outlet property="username" destination="Arb-Np-s54" id="4az-iA-EXl"/>
                                         </connections>

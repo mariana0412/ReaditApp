@@ -14,7 +14,7 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var timePassed: UILabel!
     @IBOutlet weak var domain: UILabel!
     @IBOutlet weak var postTitle: UILabel!
-    @IBOutlet weak var redditPostImage: UIImageView!
+    @IBOutlet weak var postImage: UIImageView!
     @IBOutlet weak var rating: UIButton!
     @IBOutlet weak var commentsNumber: UIButton!
     @IBOutlet weak var bookmark: UIButton!
@@ -27,7 +27,7 @@ class PostTableViewCell: UITableViewCell {
         postTitle.text = nil
         timePassed.text = nil
         domain.text = nil
-        redditPostImage.image = UIImage(systemName: "photo.fill")
+        postImage.image = UIImage(systemName: "photo.fill")
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
         bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
@@ -42,9 +42,9 @@ class PostTableViewCell: UITableViewCell {
         rating.setTitle(String(post.data.rating), for: .normal)
         commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
         
-        redditPostImage.image = UIImage(systemName: "photo.fill")
+        postImage.image = UIImage(systemName: "photo.fill")
         if let url = URL(string: post.data.imageURL) {
-            redditPostImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
+            postImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
         
         let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
