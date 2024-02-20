@@ -9,18 +9,41 @@ import UIKit
 
 class PostListViewController: UIViewController {
     
-    let cellIdentifier = "post"
+    // MARK: - Const
+    struct Const {
+        static let cellReuseIdentifier = "post"
+        static let goToPostViewSegueID = "go_to_post_view"
+    }
+    
+    // MARK: - Properties & data
     var posts: [RedditPost] = []
+    var selectedPost: RedditPost?
 
+    // MARK: - IBOutlet
     @IBOutlet weak var tableView: UITableView!
+    
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setPostValues()
     }
-
-
-    // MARK: - Table view data source
-
+    
+    // MARK: - Navigation
+    override func prepare(
+        for segue: UIStoryboardSegue,
+        sender: Any?
+    ) {
+        switch segue.identifier {
+        case Const.goToPostViewSegueID:
+            let postVC = segue.destination as! PostDetailsViewController
+            DispatchQueue.main.async {
+                postVC.config(with: self.selectedPost!)
+            }
+        default:
+            break
+        }
+    }
     
     private func setPostValues() {
         let apiService = APIService()
@@ -38,19 +61,35 @@ class PostListViewController: UIViewController {
     }
 }
 
-
-extension PostListViewController: UITableViewDataSource, UITableViewDelegate {
+// MARK: - UITableViewDataSource
+extension PostListViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return posts.count
     }
     
-    // повертає заповнену клітинку
+    // returns a filled cell
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier, for: indexPath) as! PostTableViewCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: Const.cellReuseIdentifier,
+            for: indexPath
+        ) as! PostTableViewCell
+        
         let post = posts[indexPath.row]
         cell.configure(post: post)
+        
         return cell
     }
     
+}
+
+// MARK: - UITableViewDelegate
+extension PostListViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        self.selectedPost = self.posts[indexPath.row]
+        self.performSegue(
+            withIdentifier: Const.goToPostViewSegueID,
+            sender: indexPath
+        )
+    }
 }

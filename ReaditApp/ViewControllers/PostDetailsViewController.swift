@@ -8,8 +8,9 @@
 import UIKit
 import Kingfisher
 
-class PostViewController: UIViewController {
+class PostDetailsViewController: UIViewController {
 
+    // MARK: - IBOutlets
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var timePassed: UILabel!
     @IBOutlet weak var domain: UILabel!
@@ -19,30 +20,9 @@ class PostViewController: UIViewController {
     @IBOutlet weak var commentsNumber: UIButton!
     @IBOutlet weak var bookmark: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setPostValues()
-    }
-    
-    private func setPostValues() {
-        let apiService = APIService()
-        
-        Task {
-            do {
-                let redditResponse = try await apiService.fetchPosts(subreddit: "capybara", limit: 1, after: nil)
-                if let post = redditResponse.data.children.first {
-                    DispatchQueue.main.async { [weak self] in
-                        self?.updateUI(with: post)
-                    }
-                }
-            } catch {
-                print("Failed with error: \(error)")
-            }
-        }
-    }
-    
-    private func updateUI(with post: RedditPost) {
-        username.text = post.data.username
+    // MARK: - Config
+    func config(with post: RedditPost) {
+        username.text = "u/\(post.data.username)"
         postTitle.text = post.data.title
         timePassed.text = post.data.timePassed
         domain.text = post.data.domain
