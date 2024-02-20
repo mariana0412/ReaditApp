@@ -81,6 +81,9 @@
                                         <buttonConfiguration key="configuration" style="plain" image="bookmark.circle" catalog="system">
                                             <color key="baseForegroundColor" systemColor="secondaryLabelColor"/>
                                         </buttonConfiguration>
+                                        <connections>
+                                            <action selector="showSaved:" destination="DM3-1n-5Tb" eventType="touchUpInside" id="cQt-rD-Etk"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="placeholderTextColor"/>
@@ -135,6 +138,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="hQu-z6-moD"/>
                     <connections>
+                        <outlet property="saved" destination="4fb-zP-3LC" id="qEE-E2-mNK"/>
                         <outlet property="subredditLabel" destination="ra9-sl-B0a" id="3V0-Rm-xMZ"/>
                         <outlet property="tableView" destination="84N-nL-h9V" id="cGe-IK-Hxy"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="go_to_post_view" id="GYp-1h-F3m"/>

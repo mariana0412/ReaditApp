@@ -22,10 +22,9 @@ class PostDetailsViewController: UIViewController {
         configure()
     }
     
-    // Call this function to configure the view with a RedditPost
     func configure() {
         if let redditPost = redditPost {
-            postView.config(with: redditPost)
+            postView.configure(with: redditPost)
         }
     }
 

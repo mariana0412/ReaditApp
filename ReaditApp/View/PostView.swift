@@ -21,6 +21,16 @@ class PostView: UIView {
     @IBOutlet weak var commentsNumber: UIButton!
     @IBOutlet weak var bookmark: UIButton!
     
+    var isSaved = false
+    
+    // prototype, not fully implemented
+    @IBAction func toggleSave(_ sender: Any) {
+        let bookmarkImageName = isSaved ? "bookmark" : "bookmark.fill"
+        let bookmarkImage = UIImage(systemName: bookmarkImageName)
+        bookmark.setImage(bookmarkImage, for: .normal)
+        isSaved = !isSaved
+    }
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         commonInit()
@@ -36,7 +46,7 @@ class PostView: UIView {
         contentView.fixInView(self)
     }
     
-    func config(with post: RedditPost) {
+    func configure(with post: RedditPost) {
         username.text = "u/\(post.data.username)"
         postTitle.text = post.data.title
         timePassed.text = post.data.timePassed
@@ -49,6 +59,7 @@ class PostView: UIView {
             postImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
         
+        isSaved = post.saved
         let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
         let bookmarkImage = UIImage(systemName: bookmarkImageName)
         bookmark.setImage(bookmarkImage, for: .normal)
@@ -63,6 +74,7 @@ class PostView: UIView {
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
         bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+        bookmark.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
     }
 }
 

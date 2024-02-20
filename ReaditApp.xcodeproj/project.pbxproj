@@ -138,6 +138,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		CAF3D3682B8537C9006FE3D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CAF3D3622B84F8EE006FE3D3 /* PostView.swift */,
+				CAF3D3642B84F9B3006FE3D3 /* PostView.xib */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 		CAFD3BBC2B79B2BD001D2C1A = {
 			isa = PBXGroup;
 			children = (
@@ -159,6 +168,7 @@
 		CAFD3BC72B79B2BD001D2C1A /* ReaditApp */ = {
 			isa = PBXGroup;
 			children = (
+				CAF3D3682B8537C9006FE3D3 /* View */,
 				CA1C7E272B7BC3F1002E592E /* Services */,
 				CA1C7E262B7BC3E1002E592E /* ViewControllers */,
 				CAA1EF752B7AA82F00385BF7 /* Models */,
@@ -168,8 +178,6 @@
 				CAFD3BD12B79B2BF001D2C1A /* Assets.xcassets */,
 				CAFD3BD32B79B2BF001D2C1A /* LaunchScreen.storyboard */,
 				CAFD3BD62B79B2BF001D2C1A /* Info.plist */,
-				CAF3D3622B84F8EE006FE3D3 /* PostView.swift */,
-				CAF3D3642B84F9B3006FE3D3 /* PostView.xib */,
 			);
 			path = ReaditApp;
 			sourceTree = "<group>";

@@ -21,10 +21,19 @@ class PostListViewController: UIViewController {
     var selectedPost: RedditPost?
     var afterId: String?
     var isFetchingPosts = false
+    var showOnlySaved = false
 
     // MARK: - IBOutlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subredditLabel: UILabel!
+    @IBOutlet weak var saved: UIButton!
+    
+    // prototype, not fully implemented
+    @IBAction func showSaved(_ sender: UIButton) {
+        let iconName = showOnlySaved ? "bookmark.circle" : "bookmark.circle.fill"
+        saved.setImage(UIImage(systemName: iconName), for: .normal)
+        showOnlySaved = !showOnlySaved
+    }
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
