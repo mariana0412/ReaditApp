@@ -73,6 +73,7 @@
 		CA1C7E262B7BC3E1002E592E /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				CA9827022B84D8900021E6AA /* Cells */,
 				CAA1EF842B7AF92E00385BF7 /* PostViewController.swift */,
 				CA577BBB2B84176200A3ED64 /* PostListViewController.swift */,
 			);
@@ -115,13 +116,20 @@
 			path = Reddit;
 			sourceTree = "<group>";
 		};
+		CA9827022B84D8900021E6AA /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CA577BBD2B84177500A3ED64 /* PostTableViewCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
 		CAA1EF752B7AA82F00385BF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				CA3D59792B7C13810094CA8B /* Reddit */,
 				CA3D59782B7C136E0094CA8B /* Post */,
 				CA1C7E292B7BD958002E592E /* Image */,
-				CA577BBD2B84177500A3ED64 /* PostTableViewCell.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

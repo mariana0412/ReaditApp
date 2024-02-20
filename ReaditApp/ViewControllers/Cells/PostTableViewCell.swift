@@ -8,7 +8,8 @@
 import UIKit
 
 class PostTableViewCell: UITableViewCell {
-
+    
+    // MARK: - IBOutlet
     @IBOutlet weak var username: UILabel!
     @IBOutlet weak var timePassed: UILabel!
     @IBOutlet weak var domain: UILabel!
@@ -18,17 +19,21 @@ class PostTableViewCell: UITableViewCell {
     @IBOutlet weak var commentsNumber: UIButton!
     @IBOutlet weak var bookmark: UIButton!
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
+    // MARK: - Lifecycle
+    override func prepareForReuse() {
+        super.prepareForReuse()
 
-    override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        username.text = nil
+        postTitle.text = nil
+        timePassed.text = nil
+        domain.text = nil
+        redditPostImage.image = UIImage(systemName: "photo.fill")
+        rating.setTitle(nil, for: .normal)
+        commentsNumber.setTitle(nil, for: .normal)
+        bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
     }
     
+    // MARK: - Config
     func configure(post: RedditPost) {
         username.text = post.data.username
         postTitle.text = post.data.title
