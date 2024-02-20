@@ -10,33 +10,22 @@ import Kingfisher
 
 class PostDetailsViewController: UIViewController {
 
-    // MARK: - IBOutlets
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var timePassed: UILabel!
-    @IBOutlet weak var domain: UILabel!
-    @IBOutlet weak var postTitle: UILabel!
-    @IBOutlet weak var image: UIImageView!
-    @IBOutlet weak var rating: UIButton!
-    @IBOutlet weak var commentsNumber: UIButton!
-    @IBOutlet weak var bookmark: UIButton!
+    // MARK: - IBOutlet
+    @IBOutlet weak var postView: PostView!
     
-    // MARK: - Config
-    func config(with post: RedditPost) {
-        username.text = "u/\(post.data.username)"
-        postTitle.text = post.data.title
-        timePassed.text = post.data.timePassed
-        domain.text = post.data.domain
-        rating.setTitle(String(post.data.rating), for: .normal)
-        commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
-        
-        image.image = UIImage(systemName: "photo.fill")
-        if let url = URL(string: post.data.imageURL) {
-            image.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
+    // MARK: - Properties & data
+    var redditPost: RedditPost?
+    
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        configure()
+    }
+    
+    func configure() {
+        if let redditPost = redditPost {
+            postView.configure(with: redditPost)
         }
-        
-        let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
-        let bookmarkImage = UIImage(systemName: bookmarkImageName)
-        bookmark.setImage(bookmarkImage, for: .normal)
     }
 
 }
