@@ -53,6 +53,17 @@ class PostView: UIView {
         let bookmarkImage = UIImage(systemName: bookmarkImageName)
         bookmark.setImage(bookmarkImage, for: .normal)
     }
+    
+    func prepareForReuse() {
+        username.text = nil
+        postTitle.text = nil
+        timePassed.text = nil
+        domain.text = nil
+        postImage.image = UIImage(systemName: "photo.fill")
+        rating.setTitle(nil, for: .normal)
+        commentsNumber.setTitle(nil, for: .normal)
+        bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
+    }
 }
 
 extension UIView {

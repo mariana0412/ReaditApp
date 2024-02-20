@@ -26,6 +26,7 @@ class PostListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.rowHeight = 300;
         setPostValues()
     }
     
