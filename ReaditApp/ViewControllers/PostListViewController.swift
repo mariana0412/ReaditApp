@@ -39,7 +39,7 @@ class PostListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        manageUI()
+        setSubredditLabel()
         fetchPosts()
     }
     
@@ -58,8 +58,7 @@ class PostListViewController: UIViewController {
     }
     
     // MARK: - UI Management
-    private func manageUI() {
-        self.tableView.rowHeight = 300;
+    private func setSubredditLabel() {
         self.subredditLabel.text = "/r/\(Const.subredditTopic)"
     }
     
@@ -131,6 +130,10 @@ extension PostListViewController: UITableViewDelegate {
             withIdentifier: Const.goToPostViewSegueID,
             sender: indexPath
         )
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
