@@ -22,6 +22,14 @@ class PostView: UIView {
     @IBOutlet weak var bookmark: UIButton!
     
     var isSaved = false
+    private var postUrl: String?
+    weak var sharingDelegate: PostViewSharingDelegate?
+    
+    @IBAction func sharePost(_ sender: Any) {
+        if let url = postUrl {
+            sharingDelegate?.postViewDidRequestShare(withURL: url)
+        }
+    }
     
     // prototype, not fully implemented
     @IBAction func toggleSave(_ sender: Any) {
@@ -63,6 +71,7 @@ class PostView: UIView {
         let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
         let bookmarkImage = UIImage(systemName: bookmarkImageName)
         bookmark.setImage(bookmarkImage, for: .normal)
+        postUrl = post.data.url
     }
     
     func prepareForReuse() {

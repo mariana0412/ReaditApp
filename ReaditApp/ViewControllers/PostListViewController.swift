@@ -39,7 +39,7 @@ class PostListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        manageUI()
+        setSubredditLabel()
         fetchPosts()
     }
     
@@ -58,8 +58,7 @@ class PostListViewController: UIViewController {
     }
     
     // MARK: - UI Management
-    private func manageUI() {
-        self.tableView.rowHeight = 300;
+    private func setSubredditLabel() {
         self.subredditLabel.text = "/r/\(Const.subredditTopic)"
     }
     
@@ -115,6 +114,7 @@ extension PostListViewController: UITableViewDataSource {
         
         let post = posts[indexPath.row]
         cell.configure(post: post)
+        cell.postView.sharingDelegate = self
         
         return cell
     }
@@ -132,6 +132,10 @@ extension PostListViewController: UITableViewDelegate {
         )
     }
     
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 300
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let offsetY = scrollView.contentOffset.y
         let contentHeight = scrollView.contentSize.height
@@ -143,4 +147,10 @@ extension PostListViewController: UITableViewDelegate {
         }
     }
 
+}
+
+extension PostListViewController: PostViewSharingDelegate {
+    func postViewDidRequestShare(withURL url: String) {
+        share(url: url)
+    }
 }

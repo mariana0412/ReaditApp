@@ -25,7 +25,15 @@ class PostDetailsViewController: UIViewController {
     func configure() {
         if let redditPost = redditPost {
             postView.configure(with: redditPost)
+            postView.sharingDelegate = self
         }
     }
 
+}
+
+extension PostDetailsViewController: PostViewSharingDelegate {
+    func postViewDidRequestShare(withURL url: String) {
+        share(url: url)
+    }
+    
 }
