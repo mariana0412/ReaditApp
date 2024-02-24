@@ -15,6 +15,7 @@ struct PostData: Codable {
     let ups: Int
     let downs: Int
     let commentsNumber: Int
+    private let permalink: String
     
     var rating: Int {
         return ups + downs
@@ -32,6 +33,10 @@ struct PostData: Codable {
         return convertTimePassed(from: originalTimePassed)
     }
     
+    var url: String {
+        return "https://www.reddit.com\(permalink)"
+    }
+    
     enum CodingKeys: String, CodingKey {
         case username = "author_fullname"
         case originalTimePassed = "created_utc"
@@ -41,6 +46,7 @@ struct PostData: Codable {
         case ups
         case downs
         case commentsNumber = "num_comments"
+        case permalink
     }
     
     private func convertTimePassed(from timeInterval: TimeInterval) -> String {

@@ -21,6 +21,7 @@
 		CAA1EF852B7AF92E00385BF7 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA1EF842B7AF92E00385BF7 /* PostDetailsViewController.swift */; };
 		CAF3D3632B84F8EE006FE3D3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3D3622B84F8EE006FE3D3 /* PostView.swift */; };
 		CAF3D3652B84F9B3006FE3D3 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF3D3642B84F9B3006FE3D3 /* PostView.xib */; };
+		CAF5BFF02B8A91FA0011541F /* PostViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF5BFEF2B8A91FA0011541F /* PostViewDelegate.swift */; };
 		CAFD3BC92B79B2BD001D2C1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD3BC82B79B2BD001D2C1A /* AppDelegate.swift */; };
 		CAFD3BCB2B79B2BD001D2C1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD3BCA2B79B2BD001D2C1A /* SceneDelegate.swift */; };
 		CAFD3BD02B79B2BD001D2C1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD3BCE2B79B2BD001D2C1A /* Main.storyboard */; };
@@ -45,6 +46,7 @@
 		CAA1EF842B7AF92E00385BF7 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
 		CAF3D3622B84F8EE006FE3D3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		CAF3D3642B84F9B3006FE3D3 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
+		CAF5BFEF2B8A91FA0011541F /* PostViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewDelegate.swift; sourceTree = "<group>"; };
 		CAFD3BC52B79B2BD001D2C1A /* ReaditApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaditApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD3BC82B79B2BD001D2C1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD3BCA2B79B2BD001D2C1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -143,6 +145,7 @@
 			children = (
 				CAF3D3622B84F8EE006FE3D3 /* PostView.swift */,
 				CAF3D3642B84F9B3006FE3D3 /* PostView.xib */,
+				CAF5BFEF2B8A91FA0011541F /* PostViewDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -321,6 +324,7 @@
 				CAA1EF812B7AA96000385BF7 /* APIService.swift in Sources */,
 				CAA1EF7B2B7AA86E00385BF7 /* RedditPost.swift in Sources */,
 				CA1C7E2D2B7BD977002E592E /* ImagePreview.swift in Sources */,
+				CAF5BFF02B8A91FA0011541F /* PostViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -481,6 +485,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -513,6 +518,7 @@
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown";
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
