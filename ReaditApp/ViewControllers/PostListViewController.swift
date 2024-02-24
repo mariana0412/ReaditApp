@@ -115,6 +115,7 @@ extension PostListViewController: UITableViewDataSource {
         
         let post = posts[indexPath.row]
         cell.configure(post: post)
+        cell.postView.sharingDelegate = self
         
         return cell
     }
@@ -143,4 +144,10 @@ extension PostListViewController: UITableViewDelegate {
         }
     }
 
+}
+
+extension PostListViewController: PostViewSharingDelegate {
+    func postViewDidRequestShare(withURL url: String) {
+        share(url: url)
+    }
 }

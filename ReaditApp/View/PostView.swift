@@ -23,11 +23,11 @@ class PostView: UIView {
     
     var isSaved = false
     private var postUrl: String?
-    weak var delegate: PostViewDelegate?
+    weak var sharingDelegate: PostViewSharingDelegate?
     
     @IBAction func sharePost(_ sender: Any) {
         if let url = postUrl {
-            delegate?.postViewDidRequestShare(self, withURL: url)
+            sharingDelegate?.postViewDidRequestShare(withURL: url)
         }
     }
     

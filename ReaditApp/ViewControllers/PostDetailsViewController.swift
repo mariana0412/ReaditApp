@@ -25,20 +25,15 @@ class PostDetailsViewController: UIViewController {
     func configure() {
         if let redditPost = redditPost {
             postView.configure(with: redditPost)
-            postView.delegate = self
+            postView.sharingDelegate = self
         }
     }
 
 }
 
-extension PostDetailsViewController: PostViewDelegate {
-    func postViewDidRequestShare(_ postView: PostView, withURL url: String) {
-        guard let shareURL = URL(string: url) else { return }
-
-        let activityViewController = UIActivityViewController(activityItems: [shareURL], applicationActivities: nil)
-        activityViewController.popoverPresentationController?.sourceView = self.view
-
-        present(activityViewController, animated: true, completion: nil)
+extension PostDetailsViewController: PostViewSharingDelegate {
+    func postViewDidRequestShare(withURL url: String) {
+        share(url: url)
     }
     
 }
