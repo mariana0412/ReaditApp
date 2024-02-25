@@ -7,6 +7,8 @@
 
 import Foundation
 
-protocol PostViewSharingDelegate: AnyObject {
+protocol PostViewDelegate: AnyObject {
     func postViewDidRequestShare(withURL url: String)
+    func postViewDidRequestSave(post: RedditPost)
+    func postViewDidRequestUnsave(post: RedditPost)
 }

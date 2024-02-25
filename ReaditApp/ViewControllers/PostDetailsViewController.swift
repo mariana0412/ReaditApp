@@ -31,9 +31,18 @@ class PostDetailsViewController: UIViewController {
 
 }
 
-extension PostDetailsViewController: PostViewSharingDelegate {
+extension PostDetailsViewController: PostViewDelegate {
+    
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
+    }
+    
+    func postViewDidRequestSave(post: RedditPost) {
+        save(post: post)
+    }
+    
+    func postViewDidRequestUnsave(post: RedditPost) {
+        unsave(post: post)
     }
     
 }

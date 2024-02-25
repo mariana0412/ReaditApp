@@ -85,6 +85,8 @@ class PostListViewController: UIViewController {
                         self.posts = redditResponse.data.children
                     }
                     
+                    updatePostsSavedStatus()
+                    
                     self.afterId = redditResponse.data.after
                     self.tableView.reloadData()
                     self.isFetchingPosts = false
@@ -95,6 +97,16 @@ class PostListViewController: UIViewController {
             }
         }
     }
+    
+    private func updatePostsSavedStatus() {
+        let savedPostsURLs = PostStorageManager.shared.loadPosts().map { $0.data.url }
+        self.posts = self.posts.map { post in
+            var modifiedPost = post
+            modifiedPost.saved = savedPostsURLs.contains(post.data.url)
+            return modifiedPost
+        }
+    }
+
     
 }
 
@@ -149,8 +161,30 @@ extension PostListViewController: UITableViewDelegate {
 
 }
 
-extension PostListViewController: PostViewSharingDelegate {
+extension PostListViewController: PostViewDelegate {
+    
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
+    
+    func postViewDidRequestSave(post: RedditPost) {
+        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
+            posts[index].saved = true
+            save(post: posts[index])
+            
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+    
+    func postViewDidRequestUnsave(post: RedditPost) {
+        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
+            posts[index].saved = false
+            unsave(post: posts[index])
+            
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
+    }
+    
 }
