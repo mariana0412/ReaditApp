@@ -21,7 +21,6 @@ class PostView: UIView {
     @IBOutlet weak var commentsNumber: UIButton!
     @IBOutlet weak var bookmark: UIButton!
     
-    var isSaved = false
     private var redditPost: RedditPost?
     weak var sharingDelegate: PostViewDelegate?
     
@@ -76,7 +75,6 @@ class PostView: UIView {
             postImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
         
-        isSaved = post.saved
         updateBookmarkImage()
     }
     

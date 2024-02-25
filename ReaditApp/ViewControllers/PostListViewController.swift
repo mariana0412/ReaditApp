@@ -28,11 +28,19 @@ class PostListViewController: UIViewController {
     @IBOutlet weak var subredditLabel: UILabel!
     @IBOutlet weak var saved: UIButton!
     
-    // prototype, not fully implemented
     @IBAction func showSaved(_ sender: UIButton) {
-        let iconName = showOnlySaved ? "bookmark.circle" : "bookmark.circle.fill"
+        showOnlySaved.toggle()
+        
+        let iconName = showOnlySaved ? "bookmark.circle.fill" : "bookmark.circle"
         saved.setImage(UIImage(systemName: iconName), for: .normal)
-        showOnlySaved = !showOnlySaved
+        
+        if showOnlySaved {
+            posts = PostStorageManager.shared.loadPosts()
+        } else {
+            fetchPosts()
+        }
+        
+        tableView.reloadData()
     }
     
     // MARK: - Lifecycle
@@ -168,7 +176,12 @@ extension PostListViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
 
-        // a bit in advance
+        // if we are in "show only saved posts" mode, do not fetch more posts
+        if showOnlySaved {
+            return
+        }
+        
+        // if not, fetch and even a bit in advance
         if offsetY > contentHeight - height * 3 {
             fetchPosts(loadMore: true)
         }
