@@ -51,6 +51,10 @@ class PostListViewController: UIViewController {
         // find the post in array by url and update its status
         if let index = posts.firstIndex(where: { $0.data.url == url }) {
             posts[index].saved = isSaved
+            
+            // update UI
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
         }
     }
     
