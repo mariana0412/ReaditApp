@@ -41,6 +41,17 @@ class PostListViewController: UIViewController {
         
         setSubredditLabel()
         fetchPosts()
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
+    }
+    
+    @objc func handlePostSavedStatusChanged(notification: Notification) {
+        guard let url = notification.userInfo?["url"] as? String,
+              let isSaved = notification.userInfo?["isSaved"] as? Bool else { return }
+
+        // find the post in array by url and update its status
+        if let index = posts.firstIndex(where: { $0.data.url == url }) {
+            posts[index].saved = isSaved
+        }
     }
     
     // MARK: - Navigation
