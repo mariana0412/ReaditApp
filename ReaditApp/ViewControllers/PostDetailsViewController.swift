@@ -37,12 +37,8 @@ extension PostDetailsViewController: PostViewDelegate {
         share(url: url)
     }
     
-    func postViewDidRequestSave(post: RedditPost) {
-        save(post: post)
-    }
-    
-    func postViewDidRequestUnsave(post: RedditPost) {
-        unsave(post: post)
+    func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
+        updatePostSaveStatus(for: post, isSaved: isSaved)
     }
     
 }

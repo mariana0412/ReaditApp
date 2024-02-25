@@ -33,14 +33,9 @@ class PostView: UIView {
     
     @IBAction func toggleSave(_ sender: Any) {
         guard let post = redditPost else { return }
-
-        if post.saved {
-            sharingDelegate?.postViewDidRequestUnsave(post: post)
-            redditPost?.saved = false
-        } else {
-            sharingDelegate?.postViewDidRequestSave(post: post)
-            redditPost?.saved = true
-        }
+        
+        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post, isSaved: !post.saved)
+        redditPost?.saved = !post.saved
         
         updateBookmarkImage()
     }

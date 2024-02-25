@@ -167,23 +167,10 @@ extension PostListViewController: PostViewDelegate {
         share(url: url)
     }
     
-    func postViewDidRequestSave(post: RedditPost) {
+    func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
         if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
-            posts[index].saved = true
-            save(post: posts[index])
-            
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.reloadRows(at: [indexPath], with: .none)
-        }
-    }
-    
-    func postViewDidRequestUnsave(post: RedditPost) {
-        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
-            posts[index].saved = false
-            unsave(post: posts[index])
-            
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.reloadRows(at: [indexPath], with: .none)
+            posts[index].saved = isSaved
+            updatePostSaveStatus(for: posts[index], isSaved: isSaved)
         }
     }
     
