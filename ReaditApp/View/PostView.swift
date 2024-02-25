@@ -21,22 +21,28 @@ class PostView: UIView {
     @IBOutlet weak var commentsNumber: UIButton!
     @IBOutlet weak var bookmark: UIButton!
     
-    var isSaved = false
-    private var postUrl: String?
-    weak var sharingDelegate: PostViewSharingDelegate?
+    private var redditPost: RedditPost?
+    weak var sharingDelegate: PostViewDelegate?
     
     @IBAction func sharePost(_ sender: Any) {
-        if let url = postUrl {
-            sharingDelegate?.postViewDidRequestShare(withURL: url)
+        if let post = redditPost {
+            sharingDelegate?.postViewDidRequestShare(withURL: post.data.url)
         }
     }
     
-    // prototype, not fully implemented
     @IBAction func toggleSave(_ sender: Any) {
-        let bookmarkImageName = isSaved ? "bookmark" : "bookmark.fill"
+        guard let post = redditPost else { return }
+        
+        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post, isSaved: !post.saved)
+        redditPost?.saved = !post.saved
+        
+        updateBookmarkImage()
+    }
+    
+    private func updateBookmarkImage() {
+        let bookmarkImageName = redditPost?.saved ?? false ? "bookmark.fill" : "bookmark"
         let bookmarkImage = UIImage(systemName: bookmarkImageName)
         bookmark.setImage(bookmarkImage, for: .normal)
-        isSaved = !isSaved
     }
     
     override init(frame: CGRect) {
@@ -55,6 +61,8 @@ class PostView: UIView {
     }
     
     func configure(with post: RedditPost) {
+        self.redditPost = post
+        
         username.text = "u/\(post.data.username)"
         postTitle.text = post.data.title
         timePassed.text = post.data.timePassed
@@ -67,11 +75,7 @@ class PostView: UIView {
             postImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
         
-        isSaved = post.saved
-        let bookmarkImageName = post.saved ? "bookmark.fill" : "bookmark"
-        let bookmarkImage = UIImage(systemName: bookmarkImageName)
-        bookmark.setImage(bookmarkImage, for: .normal)
-        postUrl = post.data.url
+        updateBookmarkImage()
     }
     
     func prepareForReuse() {
@@ -82,8 +86,6 @@ class PostView: UIView {
         postImage.image = UIImage(systemName: "photo.fill")
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
-        bookmark.setImage(UIImage(systemName: "bookmark"), for: .normal)
-        bookmark.setImage(UIImage(systemName: "bookmark.fill"), for: .selected)
     }
 }
 

@@ -28,11 +28,19 @@ class PostListViewController: UIViewController {
     @IBOutlet weak var subredditLabel: UILabel!
     @IBOutlet weak var saved: UIButton!
     
-    // prototype, not fully implemented
     @IBAction func showSaved(_ sender: UIButton) {
-        let iconName = showOnlySaved ? "bookmark.circle" : "bookmark.circle.fill"
+        showOnlySaved.toggle()
+        
+        let iconName = showOnlySaved ? "bookmark.circle.fill" : "bookmark.circle"
         saved.setImage(UIImage(systemName: iconName), for: .normal)
-        showOnlySaved = !showOnlySaved
+        
+        if showOnlySaved {
+            posts = PostStorageManager.shared.loadPosts()
+        } else {
+            fetchPosts()
+        }
+        
+        tableView.reloadData()
     }
     
     // MARK: - Lifecycle
@@ -41,6 +49,21 @@ class PostListViewController: UIViewController {
         
         setSubredditLabel()
         fetchPosts()
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
+    }
+    
+    @objc func handlePostSavedStatusChanged(notification: Notification) {
+        guard let url = notification.userInfo?["url"] as? String,
+              let isSaved = notification.userInfo?["isSaved"] as? Bool else { return }
+
+        // find the post in array by url and update its status
+        if let index = posts.firstIndex(where: { $0.data.url == url }) {
+            posts[index].saved = isSaved
+            
+            // update UI
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
     
     // MARK: - Navigation
@@ -85,6 +108,8 @@ class PostListViewController: UIViewController {
                         self.posts = redditResponse.data.children
                     }
                     
+                    updatePostsSavedStatus()
+                    
                     self.afterId = redditResponse.data.after
                     self.tableView.reloadData()
                     self.isFetchingPosts = false
@@ -95,6 +120,16 @@ class PostListViewController: UIViewController {
             }
         }
     }
+    
+    private func updatePostsSavedStatus() {
+        let savedPostsURLs = PostStorageManager.shared.loadPosts().map { $0.data.url }
+        self.posts = self.posts.map { post in
+            var modifiedPost = post
+            modifiedPost.saved = savedPostsURLs.contains(post.data.url)
+            return modifiedPost
+        }
+    }
+
     
 }
 
@@ -141,7 +176,12 @@ extension PostListViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
 
-        // a bit in advance
+        // if we are in "show only saved posts" mode, do not fetch more posts
+        if showOnlySaved {
+            return
+        }
+        
+        // if not, fetch and even a bit in advance
         if offsetY > contentHeight - height * 3 {
             fetchPosts(loadMore: true)
         }
@@ -149,8 +189,17 @@ extension PostListViewController: UITableViewDelegate {
 
 }
 
-extension PostListViewController: PostViewSharingDelegate {
+extension PostListViewController: PostViewDelegate {
+    
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
+    
+    func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
+        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
+            posts[index].saved = isSaved
+            updatePostSaveStatus(for: posts[index], isSaved: isSaved)
+        }
+    }
+    
 }

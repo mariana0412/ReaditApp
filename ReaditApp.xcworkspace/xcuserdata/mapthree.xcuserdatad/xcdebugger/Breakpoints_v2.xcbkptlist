@@ -36,5 +36,127 @@
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A67F2A65-CD23-49CB-952C-55944295C387"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReaditApp/View/PostViewDelegate.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ReaditApp/View/PostView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "14"
+            endingLineNumber = "14"
+            landmarkName = "PostView"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5 - 43e01ccd5d2646fa"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReaditApp.PostView.contentView.getter : Swift.Optional&lt;__C.UIView&gt;"
+                  moduleName = "ReaditApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapthree/Desktop/study/iOS/ReaditApp/ReaditApp/View/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "16">
+               </Location>
+               <Location
+                  uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5 - 3ef585b051da4eb6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReaditApp.PostView.contentView.setter : Swift.Optional&lt;__C.UIView&gt;"
+                  moduleName = "ReaditApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapthree/Desktop/study/iOS/ReaditApp/ReaditApp/View/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "24">
+               </Location>
+               <Location
+                  uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5 - 6d7156402c2c32a7"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReaditApp.PostView.contentView.modify : Swift.Optional&lt;__C.UIView&gt;"
+                  moduleName = "ReaditApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapthree/Desktop/study/iOS/ReaditApp/ReaditApp/View/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5 - dbaf1d954a59d2ef"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReaditApp.PostView.contentView.modify : Swift.Optional&lt;__C.UIView&gt; with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "ReaditApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapthree/Desktop/study/iOS/ReaditApp/%3Ccompiler-generated%3E"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "28">
+               </Location>
+               <Location
+                  uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5 - a867c3044f07fc15"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReaditApp.PostView.init(frame: __C.CGRect) -&gt; ReaditApp.PostView"
+                  moduleName = "ReaditApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapthree/Desktop/study/iOS/ReaditApp/ReaditApp/View/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "244">
+               </Location>
+               <Location
+                  uuid = "6E49FF58-9C51-4692-A52A-68DA4A22A1D5 - 4d2193cbd2d1bf0d"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ReaditApp.PostView.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;ReaditApp.PostView&gt;"
+                  moduleName = "ReaditApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mapthree/Desktop/study/iOS/ReaditApp/ReaditApp/View/PostView.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "14"
+                  endingLineNumber = "14"
+                  offsetFromSymbolStart = "212">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
    </Breakpoints>
 </Bucket>
