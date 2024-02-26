@@ -202,7 +202,7 @@ extension PostListViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
 
-        // if we are in "show only saved posts" mode, do not fetch more posts
+        // if we are in "show only saved" mode, do not fetch more posts
         if showOnlySaved {
             return
         }
@@ -222,21 +222,31 @@ extension PostListViewController: PostViewDelegate {
     }
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
+        updateSaveStatus(for: post, isSaved: isSaved)
+        removePostFromViewIfNecessary(post)
+        reloadPotst()
+    }
+    
+    private func updateSaveStatus(for post: RedditPost, isSaved: Bool) {
         if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
             posts[index].saved = isSaved
             updatePostSaveStatus(for: posts[index], isSaved: isSaved)
-            
-            if showOnlySaved {
-                posts.remove(at: index)
-            }
+        }
+    }
+    
+    private func removePostFromViewIfNecessary(_ post: RedditPost) {
+        // remove the post from feed in "show only saved" mode
+        if showOnlySaved {
+            posts.removeAll { $0.data.url == post.data.url && !$0.saved }
         }
         
+        // in order to remove the post from feed after being in "show only saved + filter by title" mode
         if let text = searchBar.text, !text.isEmpty {
-            if let index = allSavedPosts.firstIndex(where: { $0.data.url == post.data.url }) {
-                allSavedPosts.remove(at: index)
-            }
+            allSavedPosts.removeAll { $0.data.url == post.data.url }
         }
-        
+    }
+    
+    private func reloadPotst() {
         tableView.reloadData()
     }
     
