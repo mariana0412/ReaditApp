@@ -199,6 +199,11 @@ extension PostListViewController: PostViewDelegate {
         if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
             posts[index].saved = isSaved
             updatePostSaveStatus(for: posts[index], isSaved: isSaved)
+            
+            if showOnlySaved {
+                posts.remove(at: index)
+                tableView.reloadData()
+            }
         }
     }
     
