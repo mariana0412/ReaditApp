@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UAu-b8-5gP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="UAu-b8-5gP">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22130"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -88,57 +88,71 @@
                                 </subviews>
                                 <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                 <constraints>
-                                    <constraint firstItem="ra9-sl-B0a" firstAttribute="centerX" secondItem="htM-SZ-gdP" secondAttribute="centerX" id="48f-X8-wj3"/>
+                                    <constraint firstItem="ra9-sl-B0a" firstAttribute="centerX" secondItem="htM-SZ-gdP" secondAttribute="centerX" id="4tM-a2-xLT"/>
                                     <constraint firstAttribute="height" constant="35" id="6wx-Jk-Hw2"/>
-                                    <constraint firstItem="ra9-sl-B0a" firstAttribute="centerY" secondItem="htM-SZ-gdP" secondAttribute="centerY" id="M24-EB-oxp"/>
                                     <constraint firstAttribute="trailing" secondItem="4fb-zP-3LC" secondAttribute="trailing" constant="7" id="Q3G-K3-Qzk"/>
                                     <constraint firstItem="4fb-zP-3LC" firstAttribute="centerY" secondItem="htM-SZ-gdP" secondAttribute="centerY" id="aHP-4W-XBj"/>
+                                    <constraint firstItem="ra9-sl-B0a" firstAttribute="centerY" secondItem="htM-SZ-gdP" secondAttribute="centerY" id="uoi-40-XqG"/>
                                 </constraints>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="84N-nL-h9V">
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j7E-Om-lWg">
                                 <rect key="frame" x="0.0" y="138" width="393" height="680"/>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post" rowHeight="300" id="tyH-aB-rgU" customClass="PostTableViewCell" customModule="ReaditApp" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="50" width="393" height="300"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tyH-aB-rgU" id="75t-9G-etC">
-                                            <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4co-Ha-Ng0" customClass="PostView" customModule="ReaditApp" customModuleProvider="target">
+                                <subviews>
+                                    <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Zf-aG-TkI">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="34" id="Oz8-DC-8SE"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="84N-nL-h9V">
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="680"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <prototypes>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post" rowHeight="300" id="tyH-aB-rgU" customClass="PostTableViewCell" customModule="ReaditApp" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="50" width="393" height="300"/>
+                                                <autoresizingMask key="autoresizingMask"/>
+                                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="tyH-aB-rgU" id="75t-9G-etC">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                </view>
-                                            </subviews>
-                                        </tableViewCellContentView>
+                                                    <autoresizingMask key="autoresizingMask"/>
+                                                    <subviews>
+                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4co-Ha-Ng0" customClass="PostView" customModule="ReaditApp" customModuleProvider="target">
+                                                            <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
+                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                        </view>
+                                                    </subviews>
+                                                </tableViewCellContentView>
+                                                <connections>
+                                                    <outlet property="postView" destination="4co-Ha-Ng0" id="JiR-2d-alW"/>
+                                                </connections>
+                                            </tableViewCell>
+                                        </prototypes>
                                         <connections>
-                                            <outlet property="postView" destination="4co-Ha-Ng0" id="JiR-2d-alW"/>
+                                            <outlet property="dataSource" destination="DM3-1n-5Tb" id="JHD-y9-2wc"/>
+                                            <outlet property="delegate" destination="DM3-1n-5Tb" id="6hP-hh-KUn"/>
                                         </connections>
-                                    </tableViewCell>
-                                </prototypes>
-                                <connections>
-                                    <outlet property="dataSource" destination="DM3-1n-5Tb" id="JHD-y9-2wc"/>
-                                    <outlet property="delegate" destination="DM3-1n-5Tb" id="6hP-hh-KUn"/>
-                                </connections>
-                            </tableView>
+                                    </tableView>
+                                </subviews>
+                            </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CtO-M8-Zv1"/>
                         <color key="backgroundColor" name="Color"/>
                         <constraints>
                             <constraint firstItem="CtO-M8-Zv1" firstAttribute="trailing" secondItem="htM-SZ-gdP" secondAttribute="trailing" id="8tG-E6-9vj"/>
-                            <constraint firstItem="CtO-M8-Zv1" firstAttribute="bottom" secondItem="84N-nL-h9V" secondAttribute="bottom" id="D9k-K9-TPW"/>
+                            <constraint firstItem="j7E-Om-lWg" firstAttribute="top" secondItem="htM-SZ-gdP" secondAttribute="bottom" id="99d-z6-37j"/>
+                            <constraint firstItem="j7E-Om-lWg" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="9Tj-vI-IoP"/>
                             <constraint firstItem="htM-SZ-gdP" firstAttribute="top" secondItem="CtO-M8-Zv1" secondAttribute="top" id="DUR-Uh-gwj"/>
                             <constraint firstItem="htM-SZ-gdP" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="MD2-BQ-TPW"/>
-                            <constraint firstItem="84N-nL-h9V" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="MTp-Xg-SeX"/>
-                            <constraint firstItem="CtO-M8-Zv1" firstAttribute="trailing" secondItem="84N-nL-h9V" secondAttribute="trailing" id="TCi-13-uQo"/>
-                            <constraint firstItem="84N-nL-h9V" firstAttribute="top" secondItem="htM-SZ-gdP" secondAttribute="bottom" id="qWh-v1-2FY"/>
+                            <constraint firstAttribute="trailing" secondItem="j7E-Om-lWg" secondAttribute="trailing" id="nZZ-Cj-fyg"/>
+                            <constraint firstItem="CtO-M8-Zv1" firstAttribute="bottom" secondItem="j7E-Om-lWg" secondAttribute="bottom" id="nrW-G5-Szh"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hQu-z6-moD"/>
                     <connections>
                         <outlet property="saved" destination="4fb-zP-3LC" id="qEE-E2-mNK"/>
+                        <outlet property="searchBar" destination="8Zf-aG-TkI" id="fPs-al-V7l"/>
                         <outlet property="subredditLabel" destination="ra9-sl-B0a" id="3V0-Rm-xMZ"/>
                         <outlet property="tableView" destination="84N-nL-h9V" id="cGe-IK-Hxy"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="go_to_post_view" id="GYp-1h-F3m"/>

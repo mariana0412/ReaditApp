@@ -14,10 +14,12 @@ class PostListViewController: UIViewController {
         static let cellReuseIdentifier = "post"
         static let goToPostViewSegueID = "go_to_post_view"
         static let subredditTopic = "cats"
+        static let rowHeight: CGFloat = 300
     }
     
     // MARK: - Properties & data
     var posts: [RedditPost] = []
+    var allSavedPosts: [RedditPost] = []
     var selectedPost: RedditPost?
     var afterId: String?
     var isFetchingPosts = false
@@ -27,16 +29,22 @@ class PostListViewController: UIViewController {
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var subredditLabel: UILabel!
     @IBOutlet weak var saved: UIButton!
+    @IBOutlet weak var searchBar: UITextField!
     
     @IBAction func showSaved(_ sender: UIButton) {
         showOnlySaved.toggle()
+        searchBar.isHidden = !searchBar.isHidden
         
         let iconName = showOnlySaved ? "bookmark.circle.fill" : "bookmark.circle"
         saved.setImage(UIImage(systemName: iconName), for: .normal)
         
         if showOnlySaved {
-            posts = PostStorageManager.shared.loadPosts()
+            allSavedPosts = PostStorageManager.shared.loadPosts()
+            posts = allSavedPosts
+            searchBar.becomeFirstResponder() // bring up the keyboard
         } else {
+            searchBar.text = ""
+            textFieldDidChange(searchBar)  // in order to reset the filtered posts to all posts
             fetchPosts()
         }
         
@@ -49,7 +57,12 @@ class PostListViewController: UIViewController {
         
         setSubredditLabel()
         fetchPosts()
+        
+        // observe post save status changes on other screen
         NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
+        
+        // set up search bar text field listener for changes
+        searchBar.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     @objc func handlePostSavedStatusChanged(notification: Notification) {
@@ -66,6 +79,15 @@ class PostListViewController: UIViewController {
         }
     }
     
+    @objc func textFieldDidChange(_ textField: UITextField) {
+        if let searchText = textField.text, !searchText.isEmpty {
+            posts = allSavedPosts.filter { $0.data.title.localizedCaseInsensitiveContains(searchText) }
+        } else {
+            posts = allSavedPosts
+        }
+        tableView.reloadData()
+    }
+    
     // MARK: - Navigation
     override func prepare(
         for segue: UIStoryboardSegue,
@@ -74,7 +96,11 @@ class PostListViewController: UIViewController {
         switch segue.identifier {
         case Const.goToPostViewSegueID:
             let postVC = segue.destination as! PostDetailsViewController
-            postVC.redditPost = self.selectedPost!
+            if let selectedPost = self.selectedPost {
+                postVC.redditPost = selectedPost
+            } else {
+                print("No post selected")
+            }
         default:
             break
         }
@@ -129,7 +155,6 @@ class PostListViewController: UIViewController {
             return modifiedPost
         }
     }
-
     
 }
 
@@ -168,7 +193,7 @@ extension PostListViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 300
+        return Const.rowHeight
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -176,7 +201,7 @@ extension PostListViewController: UITableViewDelegate {
         let contentHeight = scrollView.contentSize.height
         let height = scrollView.frame.height
 
-        // if we are in "show only saved posts" mode, do not fetch more posts
+        // if we are in "show only saved" mode, do not fetch more posts
         if showOnlySaved {
             return
         }
@@ -196,15 +221,32 @@ extension PostListViewController: PostViewDelegate {
     }
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
+        updateSaveStatus(for: post, isSaved: isSaved)
+        removePostFromViewIfNecessary(post)
+        reloadPotst()
+    }
+    
+    private func updateSaveStatus(for post: RedditPost, isSaved: Bool) {
         if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
             posts[index].saved = isSaved
             updatePostSaveStatus(for: posts[index], isSaved: isSaved)
-            
-            if showOnlySaved {
-                posts.remove(at: index)
-                tableView.reloadData()
-            }
         }
+    }
+    
+    private func removePostFromViewIfNecessary(_ post: RedditPost) {
+        // remove the post from feed in "show only saved" mode
+        if showOnlySaved {
+            posts.removeAll { $0.data.url == post.data.url && !$0.saved }
+        }
+        
+        // in order to remove the post from feed after being in "show only saved + filter by title" mode
+        if let text = searchBar.text, !text.isEmpty {
+            allSavedPosts.removeAll { $0.data.url == post.data.url }
+        }
+    }
+    
+    private func reloadPotst() {
+        tableView.reloadData()
     }
     
 }
