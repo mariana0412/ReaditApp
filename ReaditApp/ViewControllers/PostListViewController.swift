@@ -43,11 +43,20 @@ class PostListViewController: UIViewController {
             posts = allSavedPosts
             searchBar.becomeFirstResponder() // bring up the keyboard
         } else {
+            searchBar.resignFirstResponder()
             searchBar.text = ""
-            textFieldDidChange(searchBar)  // in order to reset the filtered posts to all posts
             fetchPosts()
         }
         
+        tableView.reloadData()
+    }
+    
+    @IBAction func searchTextChanged(_ sender: UITextField) {
+        if let searchText = sender.text, !searchText.isEmpty {
+            posts = allSavedPosts.filter { $0.data.title.localizedCaseInsensitiveContains(searchText) }
+        } else {
+            posts = allSavedPosts
+        }
         tableView.reloadData()
     }
     
@@ -60,9 +69,6 @@ class PostListViewController: UIViewController {
         
         // observe post save status changes on other screen
         NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
-        
-        // set up search bar text field listener for changes
-        searchBar.addTarget(self, action: #selector(textFieldDidChange(_:)), for: .editingChanged)
     }
     
     @objc func handlePostSavedStatusChanged(notification: Notification) {
@@ -77,15 +83,6 @@ class PostListViewController: UIViewController {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.reloadRows(at: [indexPath], with: .none)
         }
-    }
-    
-    @objc func textFieldDidChange(_ textField: UITextField) {
-        if let searchText = textField.text, !searchText.isEmpty {
-            posts = allSavedPosts.filter { $0.data.title.localizedCaseInsensitiveContains(searchText) }
-        } else {
-            posts = allSavedPosts
-        }
-        tableView.reloadData()
     }
     
     // MARK: - Navigation
@@ -239,10 +236,7 @@ extension PostListViewController: PostViewDelegate {
             posts.removeAll { $0.data.url == post.data.url && !$0.saved }
         }
         
-        // in order to remove the post from feed after being in "show only saved + filter by title" mode
-        if let text = searchBar.text, !text.isEmpty {
-            allSavedPosts.removeAll { $0.data.url == post.data.url }
-        }
+        allSavedPosts.removeAll { $0.data.url == post.data.url }
     }
     
     private func reloadPotst() {
