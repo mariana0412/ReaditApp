@@ -155,7 +155,6 @@ class PostListViewController: UIViewController {
             return modifiedPost
         }
     }
-
     
 }
 
