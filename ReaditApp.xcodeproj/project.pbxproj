@@ -97,6 +97,7 @@
 			isa = PBXGroup;
 			children = (
 				CAA1EF802B7AA96000385BF7 /* APIService.swift */,
+				CA24FEEC2B8BABF600AA5CE8 /* Notifications.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -140,6 +141,7 @@
 		CAA1EF752B7AA82F00385BF7 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CA24FEE72B8B73FE00AA5CE8 /* PostStorageManager.swift */,
 				CA3D59792B7C13810094CA8B /* Reddit */,
 				CA3D59782B7C136E0094CA8B /* Post */,
 				CA1C7E292B7BD958002E592E /* Image */,
@@ -188,8 +190,6 @@
 				CAFD3BD12B79B2BF001D2C1A /* Assets.xcassets */,
 				CAFD3BD32B79B2BF001D2C1A /* LaunchScreen.storyboard */,
 				CAFD3BD62B79B2BF001D2C1A /* Info.plist */,
-				CA24FEE72B8B73FE00AA5CE8 /* PostStorageManager.swift */,
-				CA24FEEC2B8BABF600AA5CE8 /* Notifications.swift */,
 			);
 			path = ReaditApp;
 			sourceTree = "<group>";
@@ -508,6 +508,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
@@ -541,6 +542,7 @@
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
 				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
