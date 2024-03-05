@@ -67,8 +67,10 @@ class PostListViewController: UIViewController {
         setSubredditLabel()
         fetchPosts()
         
-        // observe post save status changes on other screen
+        // observe post changes on other screen
         NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePostDoubleTapped(notification:)), name: .postDoubleTapped, object: nil)
     }
     
     @objc func handlePostSavedStatusChanged(notification: Notification) {
@@ -83,13 +85,31 @@ class PostListViewController: UIViewController {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.reloadRows(at: [indexPath], with: .none)
         }
+    }
+    
+    @objc func handlePostDoubleTapped(notification: Notification) {
+        guard let url = notification.userInfo?["url"] as? String else { return }
+        
+        // find the post in array by url and update its status
+        if let index = posts.firstIndex(where: { $0.data.url == url }) {
+            postViewDidDoubleTapping(for: posts[index])
+        }
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBar.text = ""
         
         if showOnlySaved {
             allSavedPosts = PostStorageManager.shared.loadPosts()
             posts = allSavedPosts
             tableView.reloadData()
         }
+        
+        tableView.reloadData()
     }
+
     
     // MARK: - Navigation
     override func prepare(
@@ -177,7 +197,10 @@ extension PostListViewController: UITableViewDataSource {
         
         let post = posts[indexPath.row]
         cell.configure(post: post)
+        
         cell.postView.sharingDelegate = self
+        cell.postView.saveStatusDelegate = self
+        cell.postView.commentsDelegate = self
         
         return cell
     }
@@ -186,14 +209,6 @@ extension PostListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension PostListViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedPost = self.posts[indexPath.row]
-        self.performSegue(
-            withIdentifier: Const.goToPostViewSegueID,
-            sender: indexPath
-        )
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Const.rowHeight
@@ -217,16 +232,38 @@ extension PostListViewController: UITableViewDelegate {
 
 }
 
-extension PostListViewController: PostViewDelegate {
+extension PostListViewController: PostViewSharingDelegate {
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
     
+}
+
+extension  PostListViewController: PostViewCommentsDelegate {
+    
+    func postViewDidRequestComments(for post: RedditPost) {
+        self.selectedPost = post
+        self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
+    }
+    
+}
+
+extension PostListViewController: PostViewSaveStatusDelegate {
+    func postViewDidDoubleTapping(for post: RedditPost) {
+        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
+            if !posts[index].saved {
+                posts[index].saved = true
+                updatePostSaveStatus(for: posts[index])
+            }
+        }
+        print("Animation")
+    }
+    
     func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
         updateSaveStatus(for: post)
         removePostFromViewIfNecessary(post)
-        reloadPotst()
+        tableView.reloadData()
     }
     
     private func updateSaveStatus(for post: RedditPost) {
@@ -243,10 +280,6 @@ extension PostListViewController: PostViewDelegate {
         }
         
         allSavedPosts.removeAll { $0.data.url == post.data.url }
-    }
-    
-    private func reloadPotst() {
-        tableView.reloadData()
     }
     
 }

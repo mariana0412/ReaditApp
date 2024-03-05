@@ -22,7 +22,10 @@ class PostView: UIView {
     @IBOutlet weak var bookmark: UIButton!
     
     private var redditPost: RedditPost?
-    weak var sharingDelegate: PostViewDelegate?
+    
+    weak var sharingDelegate: PostViewSharingDelegate?
+    weak var saveStatusDelegate: PostViewSaveStatusDelegate?
+    weak var commentsDelegate: PostViewCommentsDelegate?
     
     @IBAction func sharePost(_ sender: Any) {
         if let post = redditPost {
@@ -34,10 +37,16 @@ class PostView: UIView {
         guard var post = redditPost else { return }
         post.saved.toggle()
         
-        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post)
+        saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post)
         redditPost?.saved = post.saved
         
         updateBookmarkImage()
+    }
+    
+    @IBAction func seeComments(_ sender: Any) {
+        if let post = redditPost {
+            commentsDelegate?.postViewDidRequestComments(for: post)
+        }
     }
     
     private func updateBookmarkImage() {
@@ -59,6 +68,7 @@ class PostView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
         contentView.fixInView(self)
+        setupDoubleTapGesture()
     }
     
     func configure(with post: RedditPost) {
@@ -84,9 +94,28 @@ class PostView: UIView {
         postTitle.text = nil
         timePassed.text = nil
         domain.text = nil
-        postImage.image = UIImage(systemName: "photo.fill")
+        postImage.image = nil
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
+    }
+    
+    private func setupDoubleTapGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        postImage.isUserInteractionEnabled = true
+        postImage.addGestureRecognizer(doubleTapGesture)
+    }
+
+    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {        
+        guard var post = redditPost else { return }
+        if !post.saved {
+            post.saved = true
+        }
+        
+        saveStatusDelegate?.postViewDidDoubleTapping(for: post)
+        redditPost?.saved = true
+        
+        updateBookmarkImage()
     }
 }
 
