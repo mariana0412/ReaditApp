@@ -121,12 +121,17 @@
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4co-Ha-Ng0" customClass="PostView" customModule="ReaditApp" customModuleProvider="target">
+                                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4co-Ha-Ng0" customClass="PostView" customModule="ReaditApp" customModuleProvider="target">
                                                             <rect key="frame" x="0.0" y="0.0" width="393" height="300"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                         </view>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="4co-Ha-Ng0" firstAttribute="top" secondItem="75t-9G-etC" secondAttribute="top" id="FDe-Bn-xSD"/>
+                                                        <constraint firstAttribute="trailing" secondItem="4co-Ha-Ng0" secondAttribute="trailing" id="KaW-Zs-emb"/>
+                                                        <constraint firstAttribute="bottom" secondItem="4co-Ha-Ng0" secondAttribute="bottom" id="abk-Nr-mPs"/>
+                                                        <constraint firstItem="4co-Ha-Ng0" firstAttribute="leading" secondItem="75t-9G-etC" secondAttribute="leading" id="cuF-JG-p01"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <connections>
                                                     <outlet property="postView" destination="4co-Ha-Ng0" id="JiR-2d-alW"/>
@@ -173,16 +178,16 @@
             <color red="0.99400001764297485" green="0.87599998712539673" blue="0.76200002431869507" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
         </namedColor>
         <systemColor name="placeholderTextColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.29803921568627451" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.29803921570000003" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="secondaryLabelColor">
-            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.59999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>
         <systemColor name="systemGrayColor">
-            <color red="0.55686274509803924" green="0.55686274509803924" blue="0.57647058823529407" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.5568627451" green="0.5568627451" blue="0.57647058819999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

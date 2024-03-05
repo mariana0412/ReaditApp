@@ -96,6 +96,7 @@ class PostView: UIView {
         timePassed.text = nil
         domain.text = nil
         postImage.image = nil
+        postImage.layer.sublayers?.removeAll(where: { $0 is CAShapeLayer })
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
     }
@@ -110,6 +111,7 @@ class PostView: UIView {
 
     @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) { 
         guard var post = redditPost else { return }
+        
         let shouldSave = !post.saved
         
         if shouldSave {
@@ -118,11 +120,11 @@ class PostView: UIView {
         }
         redditPost?.saved = true
         
-        animateBookmarkIcon()
         updateBookmarkImage()
+        animateBookmarkIcon()
     }
     
-    private func animateBookmarkIcon() {
+    func animateBookmarkIcon() {
         let bookmarkLayer = CAShapeLayer()
         
         bookmarkLayer.path = UIBezierPath(bookmarkIn: postImage.bounds).cgPath
@@ -148,11 +150,6 @@ class PostView: UIView {
         group.duration = fadeOut.beginTime + fadeOut.duration
         
         bookmarkLayer.add(group, forKey: nil)
-        
-        // to remove the layer after the animation is completed
-        DispatchQueue.main.asyncAfter(deadline: .now() + group.duration) {
-            bookmarkLayer.removeFromSuperlayer()
-        }
     }
 
 }
