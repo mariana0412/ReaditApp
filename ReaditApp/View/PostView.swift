@@ -22,7 +22,10 @@ class PostView: UIView {
     @IBOutlet weak var bookmark: UIButton!
     
     private var redditPost: RedditPost?
-    weak var sharingDelegate: PostViewDelegate?
+    
+    weak var sharingDelegate: PostViewSharingDelegate?
+    weak var saveStatusDelegate: PostViewSaveStatusDelegate?
+    weak var commentsDelegate: PostViewCommentsDelegate?
     
     @IBAction func sharePost(_ sender: Any) {
         if let post = redditPost {
@@ -33,10 +36,16 @@ class PostView: UIView {
     @IBAction func toggleSave(_ sender: Any) {
         guard let post = redditPost else { return }
         
-        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post, isSaved: !post.saved)
+        saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post, isSaved: !post.saved)
         redditPost?.saved = !post.saved
         
         updateBookmarkImage()
+    }
+    
+    @IBAction func seeComments(_ sender: Any) {
+        if let post = redditPost {
+            commentsDelegate?.postViewDidRequestComments(for: post)
+        }
     }
     
     private func updateBookmarkImage() {

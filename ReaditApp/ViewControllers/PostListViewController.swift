@@ -170,8 +170,11 @@ extension PostListViewController: UITableViewDataSource {
         ) as! PostTableViewCell
         
         let post = posts[indexPath.row]
+        
         cell.configure(post: post)
         cell.postView.sharingDelegate = self
+        cell.postView.saveStatusDelegate = self
+        cell.postView.commentsDelegate = self
         
         return cell
     }
@@ -180,14 +183,6 @@ extension PostListViewController: UITableViewDataSource {
 
 // MARK: - UITableViewDelegate
 extension PostListViewController: UITableViewDelegate {
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedPost = self.posts[indexPath.row]
-        self.performSegue(
-            withIdentifier: Const.goToPostViewSegueID,
-            sender: indexPath
-        )
-    }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Const.rowHeight
@@ -211,11 +206,15 @@ extension PostListViewController: UITableViewDelegate {
 
 }
 
-extension PostListViewController: PostViewDelegate {
+extension PostListViewController: PostViewSharingDelegate {
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
+    
+}
+
+extension PostListViewController: PostViewSaveStatusDelegate {
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
         updateSaveStatus(for: post, isSaved: isSaved)
@@ -241,6 +240,14 @@ extension PostListViewController: PostViewDelegate {
     
     private func reloadPotst() {
         tableView.reloadData()
+    }
+    
+}
+
+extension PostListViewController: PostViewCommentsDelegate {
+    func postViewDidRequestComments(for post: RedditPost) {
+        self.selectedPost = post
+        self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
     }
     
 }

@@ -31,11 +31,15 @@ class PostDetailsViewController: UIViewController {
 
 }
 
-extension PostDetailsViewController: PostViewDelegate {
+extension PostDetailsViewController: PostViewSharingDelegate {
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
+    
+}
+
+extension PostDetailsViewController: PostViewSaveStatusDelegate {
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
         updatePostSaveStatus(for: post, isSaved: isSaved)

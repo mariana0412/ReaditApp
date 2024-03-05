@@ -22,9 +22,11 @@
 		CAA1EF7D2B7AA87A00385BF7 /* PostData.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA1EF7C2B7AA87A00385BF7 /* PostData.swift */; };
 		CAA1EF812B7AA96000385BF7 /* APIService.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA1EF802B7AA96000385BF7 /* APIService.swift */; };
 		CAA1EF852B7AF92E00385BF7 /* PostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA1EF842B7AF92E00385BF7 /* PostDetailsViewController.swift */; };
+		CADDFB8C2B976A930045B7B0 /* PostViewSharingDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDFB8B2B976A930045B7B0 /* PostViewSharingDelegate.swift */; };
+		CADDFB8E2B976ABF0045B7B0 /* PostViewSaveStatusDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDFB8D2B976ABF0045B7B0 /* PostViewSaveStatusDelegate.swift */; };
+		CADDFB902B976ADB0045B7B0 /* PostViewCommentsDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CADDFB8F2B976ADB0045B7B0 /* PostViewCommentsDelegate.swift */; };
 		CAF3D3632B84F8EE006FE3D3 /* PostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF3D3622B84F8EE006FE3D3 /* PostView.swift */; };
 		CAF3D3652B84F9B3006FE3D3 /* PostView.xib in Resources */ = {isa = PBXBuildFile; fileRef = CAF3D3642B84F9B3006FE3D3 /* PostView.xib */; };
-		CAF5BFF02B8A91FA0011541F /* PostViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAF5BFEF2B8A91FA0011541F /* PostViewDelegate.swift */; };
 		CAFD3BC92B79B2BD001D2C1A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD3BC82B79B2BD001D2C1A /* AppDelegate.swift */; };
 		CAFD3BCB2B79B2BD001D2C1A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAFD3BCA2B79B2BD001D2C1A /* SceneDelegate.swift */; };
 		CAFD3BD02B79B2BD001D2C1A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAFD3BCE2B79B2BD001D2C1A /* Main.storyboard */; };
@@ -50,9 +52,11 @@
 		CAA1EF7C2B7AA87A00385BF7 /* PostData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostData.swift; sourceTree = "<group>"; };
 		CAA1EF802B7AA96000385BF7 /* APIService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIService.swift; sourceTree = "<group>"; };
 		CAA1EF842B7AF92E00385BF7 /* PostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailsViewController.swift; sourceTree = "<group>"; };
+		CADDFB8B2B976A930045B7B0 /* PostViewSharingDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewSharingDelegate.swift; sourceTree = "<group>"; };
+		CADDFB8D2B976ABF0045B7B0 /* PostViewSaveStatusDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewSaveStatusDelegate.swift; sourceTree = "<group>"; };
+		CADDFB8F2B976ADB0045B7B0 /* PostViewCommentsDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewCommentsDelegate.swift; sourceTree = "<group>"; };
 		CAF3D3622B84F8EE006FE3D3 /* PostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostView.swift; sourceTree = "<group>"; };
 		CAF3D3642B84F9B3006FE3D3 /* PostView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostView.xib; sourceTree = "<group>"; };
-		CAF5BFEF2B8A91FA0011541F /* PostViewDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewDelegate.swift; sourceTree = "<group>"; };
 		CAFD3BC52B79B2BD001D2C1A /* ReaditApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReaditApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAFD3BC82B79B2BD001D2C1A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAFD3BCA2B79B2BD001D2C1A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -154,7 +158,9 @@
 			children = (
 				CAF3D3622B84F8EE006FE3D3 /* PostView.swift */,
 				CAF3D3642B84F9B3006FE3D3 /* PostView.xib */,
-				CAF5BFEF2B8A91FA0011541F /* PostViewDelegate.swift */,
+				CADDFB8B2B976A930045B7B0 /* PostViewSharingDelegate.swift */,
+				CADDFB8D2B976ABF0045B7B0 /* PostViewSaveStatusDelegate.swift */,
+				CADDFB8F2B976ADB0045B7B0 /* PostViewCommentsDelegate.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -325,18 +331,20 @@
 				CA1C7E2B2B7BD966002E592E /* ImageResolution.swift in Sources */,
 				CA577BBE2B84177500A3ED64 /* PostTableViewCell.swift in Sources */,
 				CA24FEE62B8AA32800AA5CE8 /* UIViewControllerExtension.swift in Sources */,
+				CADDFB902B976ADB0045B7B0 /* PostViewCommentsDelegate.swift in Sources */,
 				CAFD3BC92B79B2BD001D2C1A /* AppDelegate.swift in Sources */,
 				CAA1EF772B7AA85400385BF7 /* RedditResponse.swift in Sources */,
 				CA577BBC2B84176200A3ED64 /* PostListViewController.swift in Sources */,
 				CAFD3BCB2B79B2BD001D2C1A /* SceneDelegate.swift in Sources */,
 				CA1C7E2F2B7BD994002E592E /* ImageDetail.swift in Sources */,
 				CAA1EF792B7AA86200385BF7 /* RedditData.swift in Sources */,
+				CADDFB8C2B976A930045B7B0 /* PostViewSharingDelegate.swift in Sources */,
+				CADDFB8E2B976ABF0045B7B0 /* PostViewSaveStatusDelegate.swift in Sources */,
 				CA24FEED2B8BABF600AA5CE8 /* Notifications.swift in Sources */,
 				CAA1EF7D2B7AA87A00385BF7 /* PostData.swift in Sources */,
 				CAA1EF812B7AA96000385BF7 /* APIService.swift in Sources */,
 				CAA1EF7B2B7AA86E00385BF7 /* RedditPost.swift in Sources */,
 				CA1C7E2D2B7BD977002E592E /* ImagePreview.swift in Sources */,
-				CAF5BFF02B8A91FA0011541F /* PostViewDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
