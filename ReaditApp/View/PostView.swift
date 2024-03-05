@@ -40,6 +40,12 @@ class PostView: UIView {
         updateBookmarkImage()
     }
     
+    @IBAction func seeComments(_ sender: Any) {
+        if let post = redditPost {
+            sharingDelegate?.postViewDidRequestComments(for: post)
+        }
+    }
+    
     private func updateBookmarkImage() {
         let bookmarkImageName = redditPost?.saved ?? false ? "bookmark.fill" : "bookmark"
         let bookmarkImage = UIImage(systemName: bookmarkImageName)

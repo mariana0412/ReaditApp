@@ -32,6 +32,10 @@ class PostDetailsViewController: UIViewController {
 }
 
 extension PostDetailsViewController: PostViewDelegate {
+    func postViewDidRequestComments(for post: RedditPost) {
+        
+    }
+    
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)

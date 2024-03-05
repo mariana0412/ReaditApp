@@ -10,4 +10,5 @@ import Foundation
 protocol PostViewDelegate: AnyObject {
     func postViewDidRequestShare(withURL url: String)
     func postViewDidRequestChangeSaveStatus(for post: RedditPost)
+    func postViewDidRequestComments(for post: RedditPost)
 }

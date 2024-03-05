@@ -218,6 +218,11 @@ extension PostListViewController: UITableViewDelegate {
 }
 
 extension PostListViewController: PostViewDelegate {
+    func postViewDidRequestComments(for post: RedditPost) {
+        self.selectedPost = post
+        self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
+    }
+    
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
