@@ -84,12 +84,22 @@ class PostListViewController: UIViewController {
             tableView.reloadRows(at: [indexPath], with: .none)
         }
         
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        searchBar.text = ""
+        
         if showOnlySaved {
             allSavedPosts = PostStorageManager.shared.loadPosts()
             posts = allSavedPosts
             tableView.reloadData()
         }
+        
+        tableView.reloadData()
     }
+
     
     // MARK: - Navigation
     override func prepare(
