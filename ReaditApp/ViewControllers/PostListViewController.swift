@@ -67,8 +67,10 @@ class PostListViewController: UIViewController {
         setSubredditLabel()
         fetchPosts()
         
-        // observe post save status changes on other screen
+        // observe post changes on other screen
         NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(handlePostDoubleTapped(notification:)), name: .postDoubleTapped, object: nil)
     }
     
     @objc func handlePostSavedStatusChanged(notification: Notification) {
@@ -83,7 +85,15 @@ class PostListViewController: UIViewController {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.reloadRows(at: [indexPath], with: .none)
         }
+    }
+    
+    @objc func handlePostDoubleTapped(notification: Notification) {
+        guard let url = notification.userInfo?["url"] as? String else { return }
         
+        // find the post in array by url and update its status
+        if let index = posts.firstIndex(where: { $0.data.url == url }) {
+            postViewDidDoubleTapping(for: posts[index])
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -200,14 +210,6 @@ extension PostListViewController: UITableViewDataSource {
 // MARK: - UITableViewDelegate
 extension PostListViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        self.selectedPost = self.posts[indexPath.row]
-        self.performSegue(
-            withIdentifier: Const.goToPostViewSegueID,
-            sender: indexPath
-        )
-    }
-    
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return Const.rowHeight
     }
@@ -247,7 +249,16 @@ extension  PostListViewController: PostViewCommentsDelegate {
     
 }
 
-extension  PostListViewController: PostViewSaveStatusDelegate {
+extension PostListViewController: PostViewSaveStatusDelegate {
+    func postViewDidDoubleTapping(for post: RedditPost) {
+        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
+            if !posts[index].saved {
+                posts[index].saved = true
+                updatePostSaveStatus(for: posts[index])
+            }
+        }
+        print("Animation")
+    }
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
         updateSaveStatus(for: post)

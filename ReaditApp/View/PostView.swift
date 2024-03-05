@@ -68,6 +68,7 @@ class PostView: UIView {
     func commonInit() {
         Bundle.main.loadNibNamed(kCONTENT_XIB_NAME, owner: self, options: nil)
         contentView.fixInView(self)
+        setupDoubleTapGesture()
     }
     
     func configure(with post: RedditPost) {
@@ -96,6 +97,25 @@ class PostView: UIView {
         postImage.image = nil
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
+    }
+    
+    private func setupDoubleTapGesture() {
+        let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
+        doubleTapGesture.numberOfTapsRequired = 2
+        postImage.isUserInteractionEnabled = true
+        postImage.addGestureRecognizer(doubleTapGesture)
+    }
+
+    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {        
+        guard var post = redditPost else { return }
+        if !post.saved {
+            post.saved = true
+        }
+        
+        saveStatusDelegate?.postViewDidDoubleTapping(for: post)
+        redditPost?.saved = true
+        
+        updateBookmarkImage()
     }
 }
 
