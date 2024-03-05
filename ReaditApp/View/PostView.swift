@@ -93,7 +93,7 @@ class PostView: UIView {
         postTitle.text = nil
         timePassed.text = nil
         domain.text = nil
-        postImage.image = UIImage(systemName: "photo.fill")
+        postImage.image = nil
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
     }
