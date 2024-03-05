@@ -9,5 +9,4 @@ import Foundation
 
 extension Notification.Name {
     static let postSavedStatusChanged = Notification.Name("postSavedStatusChanged")
-    static let postDoubleTapped = Notification.Name("postDoubleTapped")
 }

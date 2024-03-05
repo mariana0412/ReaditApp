@@ -10,6 +10,7 @@ import Foundation
 class PostStorageManager {
     
     static let shared = PostStorageManager()  // Singleton
+    
     struct Const {
         static let fileName = "savedPosts.json"
     }

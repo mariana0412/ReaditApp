@@ -103,6 +103,7 @@ class PostView: UIView {
     private func setupDoubleTapGesture() {
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
+        
         postImage.isUserInteractionEnabled = true
         postImage.addGestureRecognizer(doubleTapGesture)
     }
@@ -113,7 +114,7 @@ class PostView: UIView {
         
         if shouldSave {
             post.saved = true
-            saveStatusDelegate?.postViewDidDoubleTapping(for: post)
+            saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post)
         }
         redditPost?.saved = true
         
@@ -123,9 +124,11 @@ class PostView: UIView {
     
     private func animateBookmarkIcon() {
         let bookmarkLayer = CAShapeLayer()
+        
         bookmarkLayer.path = UIBezierPath(bookmarkIn: postImage.bounds).cgPath
         bookmarkLayer.fillColor = UIColor.systemGray.cgColor
         bookmarkLayer.opacity = 0
+        
         postImage.layer.addSublayer(bookmarkLayer)
         
         let fadeIn = CABasicAnimation(keyPath: "opacity")
@@ -179,6 +182,7 @@ extension UIBezierPath {
         let start = CGPoint(x: rect.midX - width / 2, y: rect.midY - height / 2)
         
         self.move(to: start)
+        
         self.addLine(to: CGPoint(x: start.x, y: start.y))
         self.addLine(to: CGPoint(x: start.x, y: start.y + height))
         self.addLine(to: CGPoint(x: start.x + width / 2, y: start.y + height / 1.5))
