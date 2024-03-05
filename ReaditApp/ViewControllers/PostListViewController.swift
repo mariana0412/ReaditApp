@@ -223,16 +223,16 @@ extension PostListViewController: PostViewDelegate {
         share(url: url)
     }
     
-    func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
-        updateSaveStatus(for: post, isSaved: isSaved)
+    func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
+        updateSaveStatus(for: post)
         removePostFromViewIfNecessary(post)
         reloadPotst()
     }
     
-    private func updateSaveStatus(for post: RedditPost, isSaved: Bool) {
+    private func updateSaveStatus(for post: RedditPost) {
         if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
-            posts[index].saved = isSaved
-            updatePostSaveStatus(for: posts[index], isSaved: isSaved)
+            posts[index].saved = post.saved
+            updatePostSaveStatus(for: posts[index])
         }
     }
     

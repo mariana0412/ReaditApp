@@ -34,7 +34,7 @@ class PostView: UIView {
         guard var post = redditPost else { return }
         post.saved.toggle()
         
-        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post, isSaved: post.saved)
+        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post)
         redditPost?.saved = post.saved
         
         updateBookmarkImage()

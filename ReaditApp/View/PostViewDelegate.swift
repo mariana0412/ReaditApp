@@ -9,5 +9,5 @@ import Foundation
 
 protocol PostViewDelegate: AnyObject {
     func postViewDidRequestShare(withURL url: String)
-    func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool)
+    func postViewDidRequestChangeSaveStatus(for post: RedditPost)
 }

@@ -37,9 +37,9 @@ extension PostDetailsViewController: PostViewDelegate {
         share(url: url)
     }
     
-    func postViewDidRequestChangeSaveStatus(for post: RedditPost, isSaved: Bool) {
-        updatePostSaveStatus(for: post, isSaved: isSaved)
-        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["url": post.data.url, "isSaved": isSaved])
+    func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
+        updatePostSaveStatus(for: post)
+        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["url": post.data.url, "isSaved": post.saved])
     }
     
 }
