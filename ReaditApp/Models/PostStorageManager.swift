@@ -24,7 +24,7 @@ class PostStorageManager {
         var savedPosts = loadPosts()
         
         if !savedPosts.contains(post) {
-            savedPosts.append(post)
+            savedPosts.insert(post, at: 0)
             savePosts(savedPosts)
         }
     }
