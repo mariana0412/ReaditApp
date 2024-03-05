@@ -22,6 +22,7 @@ class PostView: UIView {
     @IBOutlet weak var bookmark: UIButton!
     
     private var redditPost: RedditPost?
+    private var bookmarkLayer: CAShapeLayer?
     
     weak var sharingDelegate: PostViewSharingDelegate?
     weak var saveStatusDelegate: PostViewSaveStatusDelegate?
@@ -95,6 +96,7 @@ class PostView: UIView {
         timePassed.text = nil
         domain.text = nil
         postImage.image = nil
+        postImage.layer.sublayers?.removeAll(where: { $0 is CAShapeLayer })
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
     }
@@ -102,21 +104,54 @@ class PostView: UIView {
     private func setupDoubleTapGesture() {
         let doubleTapGesture = UITapGestureRecognizer(target: self, action: #selector(handleDoubleTap(_:)))
         doubleTapGesture.numberOfTapsRequired = 2
+        
         postImage.isUserInteractionEnabled = true
         postImage.addGestureRecognizer(doubleTapGesture)
     }
 
-    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) {        
+    @objc private func handleDoubleTap(_ gesture: UITapGestureRecognizer) { 
         guard var post = redditPost else { return }
-        if !post.saved {
-            post.saved = true
-        }
         
-        saveStatusDelegate?.postViewDidDoubleTapping(for: post)
+        let shouldSave = !post.saved
+        
+        if shouldSave {
+            post.saved = true
+            saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post)
+        }
         redditPost?.saved = true
         
         updateBookmarkImage()
+        animateBookmarkIcon()
     }
+    
+    func animateBookmarkIcon() {
+        let bookmarkLayer = CAShapeLayer()
+        
+        bookmarkLayer.path = UIBezierPath(bookmarkIn: postImage.bounds).cgPath
+        bookmarkLayer.fillColor = UIColor.systemGray.cgColor
+        bookmarkLayer.opacity = 0
+        
+        postImage.layer.addSublayer(bookmarkLayer)
+        
+        let fadeIn = CABasicAnimation(keyPath: "opacity")
+        fadeIn.fromValue = 0
+        fadeIn.toValue = 1
+        fadeIn.duration = 0.3
+        
+        let fadeOut = CABasicAnimation(keyPath: "opacity")
+        fadeOut.fromValue = 1
+        fadeOut.toValue = 0
+        fadeOut.beginTime = CACurrentMediaTime() + 0.8   // delay
+        fadeOut.duration = 0.3
+        
+        //sequential animation
+        let group = CAAnimationGroup()
+        group.animations = [fadeIn, fadeOut]
+        group.duration = fadeOut.beginTime + fadeOut.duration
+        
+        bookmarkLayer.add(group, forKey: nil)
+    }
+
 }
 
 extension UIView {
@@ -128,5 +163,29 @@ extension UIView {
         NSLayoutConstraint(item: self, attribute: .trailing, relatedBy: .equal, toItem: container, attribute: .trailing, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .top, relatedBy: .equal, toItem: container, attribute: .top, multiplier: 1.0, constant: 0).isActive = true
         NSLayoutConstraint(item: self, attribute: .bottom, relatedBy: .equal, toItem: container, attribute: .bottom, multiplier: 1.0, constant: 0).isActive = true
+    }
+}
+
+extension UIBezierPath {
+    
+    convenience init(bookmarkIn rect: CGRect) {
+        self.init()
+        
+        // bookmark width and height
+        let width = rect.width * 0.2
+        let height = width * 1.5
+        
+        // bookmark starting position
+        let start = CGPoint(x: rect.midX - width / 2, y: rect.midY - height / 2)
+        
+        self.move(to: start)
+        
+        self.addLine(to: CGPoint(x: start.x, y: start.y))
+        self.addLine(to: CGPoint(x: start.x, y: start.y + height))
+        self.addLine(to: CGPoint(x: start.x + width / 2, y: start.y + height / 1.5))
+        self.addLine(to: CGPoint(x: start.x + width, y: start.y + height))
+        self.addLine(to: CGPoint(x: start.x + width, y: start.y))
+
+        self.close()
     }
 }

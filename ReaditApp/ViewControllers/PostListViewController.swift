@@ -69,8 +69,6 @@ class PostListViewController: UIViewController {
         
         // observe post changes on other screen
         NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePostDoubleTapped(notification:)), name: .postDoubleTapped, object: nil)
     }
     
     @objc func handlePostSavedStatusChanged(notification: Notification) {
@@ -84,15 +82,6 @@ class PostListViewController: UIViewController {
             // update UI
             let indexPath = IndexPath(row: index, section: 0)
             tableView.reloadRows(at: [indexPath], with: .none)
-        }
-    }
-    
-    @objc func handlePostDoubleTapped(notification: Notification) {
-        guard let url = notification.userInfo?["url"] as? String else { return }
-        
-        // find the post in array by url and update its status
-        if let index = posts.firstIndex(where: { $0.data.url == url }) {
-            postViewDidDoubleTapping(for: posts[index])
         }
     }
     
@@ -250,15 +239,6 @@ extension  PostListViewController: PostViewCommentsDelegate {
 }
 
 extension PostListViewController: PostViewSaveStatusDelegate {
-    func postViewDidDoubleTapping(for post: RedditPost) {
-        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
-            if !posts[index].saved {
-                posts[index].saved = true
-                updatePostSaveStatus(for: posts[index])
-            }
-        }
-        print("Animation")
-    }
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
         updateSaveStatus(for: post)

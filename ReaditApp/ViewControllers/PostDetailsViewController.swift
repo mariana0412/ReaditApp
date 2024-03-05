@@ -47,8 +47,4 @@ extension PostDetailsViewController: PostViewSaveStatusDelegate {
         NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["url": post.data.url, "isSaved": post.saved])
     }
     
-    func postViewDidDoubleTapping(for post: RedditPost) {
-        NotificationCenter.default.post(name: .postDoubleTapped, object: nil, userInfo: ["url": post.data.url])
-    }
-    
 }
