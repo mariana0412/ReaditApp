@@ -22,7 +22,10 @@ class PostView: UIView {
     @IBOutlet weak var bookmark: UIButton!
     
     private var redditPost: RedditPost?
-    weak var sharingDelegate: PostViewDelegate?
+    
+    weak var sharingDelegate: PostViewSharingDelegate?
+    weak var saveStatusDelegate: PostViewSaveStatusDelegate?
+    weak var commentsDelegate: PostViewCommentsDelegate?
     
     @IBAction func sharePost(_ sender: Any) {
         if let post = redditPost {
@@ -34,7 +37,7 @@ class PostView: UIView {
         guard var post = redditPost else { return }
         post.saved.toggle()
         
-        sharingDelegate?.postViewDidRequestChangeSaveStatus(for: post)
+        saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post)
         redditPost?.saved = post.saved
         
         updateBookmarkImage()
@@ -42,7 +45,7 @@ class PostView: UIView {
     
     @IBAction func seeComments(_ sender: Any) {
         if let post = redditPost {
-            sharingDelegate?.postViewDidRequestComments(for: post)
+            commentsDelegate?.postViewDidRequestComments(for: post)
         }
     }
     
@@ -90,7 +93,7 @@ class PostView: UIView {
         postTitle.text = nil
         timePassed.text = nil
         domain.text = nil
-        postImage.image = UIImage(systemName: "photo.fill")
+        postImage.image = nil
         rating.setTitle(nil, for: .normal)
         commentsNumber.setTitle(nil, for: .normal)
     }

@@ -177,7 +177,10 @@ extension PostListViewController: UITableViewDataSource {
         
         let post = posts[indexPath.row]
         cell.configure(post: post)
+        
         cell.postView.sharingDelegate = self
+        cell.postView.saveStatusDelegate = self
+        cell.postView.commentsDelegate = self
         
         return cell
     }
@@ -217,21 +220,29 @@ extension PostListViewController: UITableViewDelegate {
 
 }
 
-extension PostListViewController: PostViewDelegate {
-    func postViewDidRequestComments(for post: RedditPost) {
-        self.selectedPost = post
-        self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
-    }
-    
+extension PostListViewController: PostViewSharingDelegate {
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
     
+}
+
+extension  PostListViewController: PostViewCommentsDelegate {
+    
+    func postViewDidRequestComments(for post: RedditPost) {
+        self.selectedPost = post
+        self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
+    }
+    
+}
+
+extension  PostListViewController: PostViewSaveStatusDelegate {
+    
     func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
         updateSaveStatus(for: post)
         removePostFromViewIfNecessary(post)
-        reloadPotst()
+        tableView.reloadData()
     }
     
     private func updateSaveStatus(for post: RedditPost) {
@@ -248,10 +259,6 @@ extension PostListViewController: PostViewDelegate {
         }
         
         allSavedPosts.removeAll { $0.data.url == post.data.url }
-    }
-    
-    private func reloadPotst() {
-        tableView.reloadData()
     }
     
 }

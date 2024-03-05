@@ -26,20 +26,21 @@ class PostDetailsViewController: UIViewController {
         if let redditPost = redditPost {
             postView.configure(with: redditPost)
             postView.sharingDelegate = self
+            postView.saveStatusDelegate = self
         }
     }
 
 }
 
-extension PostDetailsViewController: PostViewDelegate {
-    func postViewDidRequestComments(for post: RedditPost) {
-        
-    }
-    
+extension PostDetailsViewController: PostViewSharingDelegate {
     
     func postViewDidRequestShare(withURL url: String) {
         share(url: url)
     }
+    
+}
+
+extension PostDetailsViewController: PostViewSaveStatusDelegate {
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
         updatePostSaveStatus(for: post)
