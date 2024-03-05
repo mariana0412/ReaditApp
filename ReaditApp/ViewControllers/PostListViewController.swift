@@ -83,6 +83,12 @@ class PostListViewController: UIViewController {
             let indexPath = IndexPath(row: index, section: 0)
             tableView.reloadRows(at: [indexPath], with: .none)
         }
+        
+        if showOnlySaved {
+            allSavedPosts = PostStorageManager.shared.loadPosts()
+            posts = allSavedPosts
+            tableView.reloadData()
+        }
     }
     
     // MARK: - Navigation

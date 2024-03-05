@@ -14,6 +14,10 @@ class PostStorageManager {
         static let fileName = "savedPosts.json"
     }
     
+    init() {
+        print("Document Directory URL: \(fileUrl.path)")
+    }
+    
     private let fileUrl: URL = {
         let documentDirectoryUrls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         let documentDirectoryUrl = documentDirectoryUrls[0]
