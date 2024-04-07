@@ -1,10 +1,14 @@
-<h3>Introduction</h3>
+# ReaditApp
 
 ReaditApp is a streamlined Reddit browsing application for iOS that offers users a convenient way to access, read, and interact with Reddit posts and comments. 
-Built using UIKit and SwiftUI, this app is designed with both functionality and user experience in mind, featuring API-based Reddit post retrieval, seamless navigation, 
+Built using <b>UIKit</b> and <b>SwiftUI</b>, this app is designed with both functionality and user experience in mind, featuring API-based Reddit post retrieval, seamless navigation, 
 and robust offline capabilities.
 
-<h3>Features</h3>
+<div align="center">
+  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493348/basic_wsjce2.png" width="300" alt="Main screen with favorites selected">
+</div>
+
+## Features
 
 - <b>API-based</b> Reddit Post Retrieval: Fetch and display Reddit posts and comments in real-time
 - <b>Favorites:</b> Keep track of your favorite posts by adding them to your favorites list
@@ -36,7 +40,12 @@ and robust offline capabilities.
 
 - <b>Paging:</b> Posts and comments are fetched and displayed dynamically, ceasing when the end of the topic is reached
 
-<h3>Installation</h3>
+## Requirements
+
+- iOS 16.0 or later
+- Xcode 15.0 or later
+
+## Installation
 
 To install ReaditApp on your iOS device, follow these steps:
 
