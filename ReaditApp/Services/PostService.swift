@@ -7,14 +7,7 @@
 import UIKit
 import Foundation
 
-class APIService {
-    
-    enum APIServiceError: Error {
-        case invalidURL
-        case invalidResponse
-        case noData
-        case decodingError(Error)
-    }
+class PostService {
     
     // Function to fetch top posts from a given subreddit
     // - subreddit: the name of the subreddit to fetch from

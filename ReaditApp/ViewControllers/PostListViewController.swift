@@ -127,7 +127,7 @@ class PostListViewController: UIViewController {
         guard !isFetchingPosts else { return }
         isFetchingPosts = true
 
-        let apiService = APIService()
+        let apiService = PostService()
         Task {
             do {
                 let redditResponse = try await apiService.fetchPosts(subreddit: Const.subredditTopic, limit: 20, after: loadMore ? afterId : nil)
