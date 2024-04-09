@@ -124,9 +124,9 @@
 		CA1C7E272B7BC3F1002E592E /* Services */ = {
 			isa = PBXGroup;
 			children = (
-				CAA6824A2BC48AB100EA3121 /* APIServiceError.swift */,
-				CAA682492BC48AB000EA3121 /* CommentService.swift */,
 				CAA1EF802B7AA96000385BF7 /* PostService.swift */,
+				CAA682492BC48AB000EA3121 /* CommentService.swift */,
+				CAA6824A2BC48AB100EA3121 /* APIServiceError.swift */,
 				CA24FEEC2B8BABF600AA5CE8 /* Notifications.swift */,
 			);
 			path = Services;

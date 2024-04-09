@@ -7,6 +7,7 @@
 import Foundation
 
 struct PostData: Codable {
+    let id: String
     let username: String
     private let originalTimePassed: TimeInterval
     let domain: String
@@ -38,6 +39,7 @@ struct PostData: Codable {
     }
     
     enum CodingKeys: String, CodingKey {
+        case id
         case username = "author_fullname"
         case originalTimePassed = "created_utc"
         case domain

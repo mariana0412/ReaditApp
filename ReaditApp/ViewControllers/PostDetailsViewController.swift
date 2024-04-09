@@ -10,25 +10,30 @@ import Kingfisher
 import SwiftUI
 
 class PostDetailsViewController: UIViewController {
-
-    @IBOutlet private weak var containerView: UIView!
-    
-    // MARK: - IBOutlet
+    // MARK: - IBOutlets
     @IBOutlet private weak var postView: PostView!
+    @IBOutlet private weak var containerView: UIView!
     
     // MARK: - Properties & data
     var redditPost: RedditPost?
-    var coordinator: CommentCoordinator?
+    var commentCoordinator: CommentCoordinator?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         configure()
         
-        coordinator = CommentCoordinator(navigationController: self.navigationController)
-        let commentListView = CommentListView(onCommentSelected: { [weak self] comment in
-            self?.coordinator?.navigateToCommentDetails(comment)
-        })
+        commentCoordinator = CommentCoordinator(navigationController: self.navigationController)
+        
+        guard let redditPost = redditPost else { return }
+        
+        let commentListView = CommentListView(
+            subredditTopic: PostListViewController.Const.subredditTopic,
+            postId: redditPost.data.id,
+            onCommentSelected: { [weak self] comment in
+                self?.commentCoordinator?.navigateToCommentDetails(comment)
+            }
+        )
         
         let commentsListViewController: UIViewController = UIHostingController(rootView: commentListView)
         let сommentsListView: UIView = commentsListViewController.view
@@ -81,7 +86,7 @@ extension PostDetailsViewController: PostViewSaveStatusDelegate {
     
     func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
         updatePostSaveStatus(for: post)
-        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["url": post.data.url, "isSaved": post.saved])
+        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["id": post.data.id, "isSaved": post.saved])
     }
     
 }

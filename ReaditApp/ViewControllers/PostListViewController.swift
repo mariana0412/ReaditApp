@@ -72,11 +72,11 @@ class PostListViewController: UIViewController {
     }
     
     @objc func handlePostSavedStatusChanged(notification: Notification) {
-        guard let url = notification.userInfo?["url"] as? String,
+        guard let id = notification.userInfo?["id"] as? String,
               let isSaved = notification.userInfo?["isSaved"] as? Bool else { return }
 
-        // find the post in array by url and update its status
-        if let index = posts.firstIndex(where: { $0.data.url == url }) {
+        // find the post in array by id and update its status
+        if let index = posts.firstIndex(where: { $0.data.id == id }) {
             posts[index].saved = isSaved
             
             // update UI
@@ -160,10 +160,10 @@ class PostListViewController: UIViewController {
     }
     
     private func updatePostsSavedStatus() {
-        let savedPostsURLs = PostStorageManager.shared.loadPosts().map { $0.data.url }
+        let savedPostsIds = PostStorageManager.shared.loadPosts().map { $0.data.id }
         self.posts = self.posts.map { post in
             var modifiedPost = post
-            modifiedPost.saved = savedPostsURLs.contains(post.data.url)
+            modifiedPost.saved = savedPostsIds.contains(post.data.id)
             return modifiedPost
         }
     }
@@ -247,7 +247,7 @@ extension PostListViewController: PostViewSaveStatusDelegate {
     }
     
     private func updateSaveStatus(for post: RedditPost) {
-        if let index = posts.firstIndex(where: { $0.data.url == post.data.url }) {
+        if let index = posts.firstIndex(where: { $0.data.id == post.data.id }) {
             posts[index].saved = post.saved
             updatePostSaveStatus(for: posts[index])
         }
@@ -256,10 +256,10 @@ extension PostListViewController: PostViewSaveStatusDelegate {
     private func removePostFromViewIfNecessary(_ post: RedditPost) {
         // remove the post from feed in "show only saved" mode
         if showOnlySaved {
-            posts.removeAll { $0.data.url == post.data.url && !$0.saved }
+            posts.removeAll { $0.data.id == post.data.id && !$0.saved }
         }
         
-        allSavedPosts.removeAll { $0.data.url == post.data.url }
+        allSavedPosts.removeAll { $0.data.id == post.data.id }
     }
     
 }
