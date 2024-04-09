@@ -14,7 +14,7 @@ struct CommentHeaderView: View {
     
     var body: some View {
         HStack {
-            Text("\(username)")
+            Text("u/\(username)")
                 .fontWeight(.bold)
             Text("•")
             Text("\(timePassed)")

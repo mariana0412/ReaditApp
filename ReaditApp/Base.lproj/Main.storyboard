@@ -34,12 +34,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qFS-ws-x7c" customClass="PostView" customModule="ReaditApp">
-                                <rect key="frame" x="0.0" y="103" width="393" height="0.0"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qFS-ws-x7c" customClass="PostView" customModule="ReaditApp">
+                                <rect key="frame" x="0.0" y="103" width="393" height="300"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="oCn-fS-izI"/>
+                                </constraints>
                             </view>
-                            <containerView opaque="NO" contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Vxv-ZR-cjk">
-                                <rect key="frame" x="0.0" y="103" width="393" height="749"/>
+                            <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vxv-ZR-cjk">
+                                <rect key="frame" x="0.0" y="403" width="393" height="449"/>
                                 <connections>
                                     <segue destination="Cyk-jU-S07" kind="embed" id="VLR-hr-Okq"/>
                                 </connections>
@@ -115,7 +118,7 @@
                                 <rect key="frame" x="0.0" y="138" width="393" height="680"/>
                                 <subviews>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Zf-aG-TkI">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="34"/>
+                                        <rect key="frame" x="0.0" y="-34" width="393" height="34"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="34" id="Oz8-DC-8SE"/>
                                         </constraints>
@@ -159,18 +162,23 @@
                                         </connections>
                                     </tableView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="84N-nL-h9V" firstAttribute="top" secondItem="8Zf-aG-TkI" secondAttribute="bottom" id="JcR-31-Rmt"/>
+                                    <constraint firstAttribute="bottom" secondItem="84N-nL-h9V" secondAttribute="bottom" id="K3f-4N-nYB"/>
+                                    <constraint firstItem="84N-nL-h9V" firstAttribute="top" secondItem="8Zf-aG-TkI" secondAttribute="bottom" id="RZA-mx-gqf"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CtO-M8-Zv1"/>
                         <color key="backgroundColor" name="Color"/>
                         <constraints>
-                            <constraint firstItem="CtO-M8-Zv1" firstAttribute="trailing" secondItem="htM-SZ-gdP" secondAttribute="trailing" id="8tG-E6-9vj"/>
-                            <constraint firstItem="j7E-Om-lWg" firstAttribute="top" secondItem="htM-SZ-gdP" secondAttribute="bottom" id="99d-z6-37j"/>
-                            <constraint firstItem="j7E-Om-lWg" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="9Tj-vI-IoP"/>
-                            <constraint firstItem="htM-SZ-gdP" firstAttribute="top" secondItem="CtO-M8-Zv1" secondAttribute="top" id="DUR-Uh-gwj"/>
-                            <constraint firstItem="htM-SZ-gdP" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="MD2-BQ-TPW"/>
-                            <constraint firstAttribute="trailing" secondItem="j7E-Om-lWg" secondAttribute="trailing" id="nZZ-Cj-fyg"/>
-                            <constraint firstItem="CtO-M8-Zv1" firstAttribute="bottom" secondItem="j7E-Om-lWg" secondAttribute="bottom" id="nrW-G5-Szh"/>
+                            <constraint firstItem="htM-SZ-gdP" firstAttribute="top" secondItem="CtO-M8-Zv1" secondAttribute="top" id="IZg-dY-WLS"/>
+                            <constraint firstItem="j7E-Om-lWg" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="Y5p-Ql-g9H"/>
+                            <constraint firstItem="htM-SZ-gdP" firstAttribute="trailing" secondItem="CtO-M8-Zv1" secondAttribute="trailing" id="Za7-9l-H09"/>
+                            <constraint firstItem="htM-SZ-gdP" firstAttribute="leading" secondItem="CtO-M8-Zv1" secondAttribute="leading" id="cg2-Tv-zWt"/>
+                            <constraint firstItem="j7E-Om-lWg" firstAttribute="bottom" secondItem="CtO-M8-Zv1" secondAttribute="bottom" id="hyo-ky-KU8"/>
+                            <constraint firstItem="j7E-Om-lWg" firstAttribute="top" secondItem="htM-SZ-gdP" secondAttribute="bottom" id="lXV-9v-eDr"/>
+                            <constraint firstItem="j7E-Om-lWg" firstAttribute="trailing" secondItem="CtO-M8-Zv1" secondAttribute="trailing" id="wk2-ku-MNo"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="hQu-z6-moD"/>
@@ -193,6 +201,7 @@
                     <view key="view" contentMode="scaleToFill" id="fSy-6V-WLJ">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="NFK-ZQ-jIl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </viewController>

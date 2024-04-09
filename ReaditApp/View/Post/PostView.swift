@@ -21,7 +21,7 @@ class PostView: UIView {
     @IBOutlet private weak var commentsNumber: UIButton!
     @IBOutlet private weak var bookmark: UIButton!
     
-    private var redditPost: RedditPost?
+    private var redditPost: Post?
     private var bookmarkLayer: CAShapeLayer?
     
     weak var sharingDelegate: PostViewSharingDelegate?
@@ -30,7 +30,7 @@ class PostView: UIView {
     
     @IBAction private func sharePost(_ sender: Any) {
         if let post = redditPost {
-            sharingDelegate?.postViewDidRequestShare(withURL: post.data.url)
+            sharingDelegate?.postViewDidRequestShare(withURL: post.url)
         }
     }
     
@@ -72,18 +72,18 @@ class PostView: UIView {
         setupDoubleTapGesture()
     }
     
-    func configure(with post: RedditPost) {
+    func configure(with post: Post) {
         self.redditPost = post
         
-        username.text = "u/\(post.data.username)"
-        postTitle.text = post.data.title
-        timePassed.text = post.data.timePassed
-        domain.text = post.data.domain
-        rating.setTitle(String(post.data.rating), for: .normal)
-        commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
+        username.text = "u/\(post.username)"
+        postTitle.text = post.title
+        timePassed.text = post.timePassed
+        domain.text = post.domain
+        rating.setTitle(String(post.rating), for: .normal)
+        commentsNumber.setTitle(String(post.commentsNumber), for: .normal)
         
         postImage.image = UIImage(systemName: "photo.fill")
-        if let url = URL(string: post.data.imageURL) {
+        if let url = URL(string: post.imageURL) {
             postImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
         

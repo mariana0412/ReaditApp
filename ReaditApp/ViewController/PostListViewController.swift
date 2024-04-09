@@ -18,20 +18,20 @@ class PostListViewController: UIViewController {
     }
     
     // MARK: - Properties & data
-    var posts: [RedditPost] = []
-    var allSavedPosts: [RedditPost] = []
-    var selectedPost: RedditPost?
+    var posts: [Post] = []
+    var allSavedPosts: [Post] = []
+    var selectedPost: Post?
     var afterId: String?
     var isFetchingPosts = false
     var showOnlySaved = false
 
     // MARK: - IBOutlets
-    @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var subredditLabel: UILabel!
-    @IBOutlet weak var saved: UIButton!
-    @IBOutlet weak var searchBar: UITextField!
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var subredditLabel: UILabel!
+    @IBOutlet private weak var saved: UIButton!
+    @IBOutlet private weak var searchBar: UITextField!
     
-    @IBAction func showSaved(_ sender: UIButton) {
+    @IBAction private func showSaved(_ sender: UIButton) {
         showOnlySaved.toggle()
         searchBar.isHidden = !searchBar.isHidden
         
@@ -51,9 +51,9 @@ class PostListViewController: UIViewController {
         tableView.reloadData()
     }
     
-    @IBAction func searchTextChanged(_ sender: UITextField) {
+    @IBAction private func searchTextChanged(_ sender: UITextField) {
         if let searchText = sender.text, !searchText.isEmpty {
-            posts = allSavedPosts.filter { $0.data.title.localizedCaseInsensitiveContains(searchText) }
+            posts = allSavedPosts.filter { $0.title.localizedCaseInsensitiveContains(searchText) }
         } else {
             posts = allSavedPosts
         }
@@ -76,7 +76,7 @@ class PostListViewController: UIViewController {
               let isSaved = notification.userInfo?["isSaved"] as? Bool else { return }
 
         // find the post in array by id and update its status
-        if let index = posts.firstIndex(where: { $0.data.id == id }) {
+        if let index = posts.firstIndex(where: { $0.id == id }) {
             posts[index].saved = isSaved
             
             // update UI
@@ -109,7 +109,7 @@ class PostListViewController: UIViewController {
         case Const.goToPostViewSegueID:
             let postVC = segue.destination as! PostDetailsViewController
             if let selectedPost = self.selectedPost {
-                postVC.redditPost = selectedPost
+                postVC.post = selectedPost
             } else {
                 print("No post selected")
             }
@@ -141,9 +141,9 @@ class PostListViewController: UIViewController {
                     }
                     
                     if loadMore {
-                        self.posts += redditResponse.data.children
+                        self.posts += redditResponse.data.children.compactMap { $0.data.toPost() }
                     } else {
-                        self.posts = redditResponse.data.children
+                        self.posts = redditResponse.data.children.compactMap { $0.data.toPost() }
                     }
                     
                     updatePostsSavedStatus()
@@ -160,10 +160,10 @@ class PostListViewController: UIViewController {
     }
     
     private func updatePostsSavedStatus() {
-        let savedPostsIds = PostStorageManager.shared.loadPosts().map { $0.data.id }
+        let savedPostsIds = PostStorageManager.shared.loadPosts().map { $0.id }
         self.posts = self.posts.map { post in
             var modifiedPost = post
-            modifiedPost.saved = savedPostsIds.contains(post.data.id)
+            modifiedPost.saved = savedPostsIds.contains(post.id)
             return modifiedPost
         }
     }
@@ -231,7 +231,7 @@ extension PostListViewController: PostViewSharingDelegate {
 
 extension  PostListViewController: PostViewCommentsDelegate {
     
-    func postViewDidRequestComments(for post: RedditPost) {
+    func postViewDidRequestComments(for post: Post) {
         self.selectedPost = post
         self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
     }
@@ -240,26 +240,26 @@ extension  PostListViewController: PostViewCommentsDelegate {
 
 extension PostListViewController: PostViewSaveStatusDelegate {
     
-    func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
+    func postViewDidRequestChangeSaveStatus(for post: Post) {
         updateSaveStatus(for: post)
         removePostFromViewIfNecessary(post)
         tableView.reloadData()
     }
     
-    private func updateSaveStatus(for post: RedditPost) {
-        if let index = posts.firstIndex(where: { $0.data.id == post.data.id }) {
+    private func updateSaveStatus(for post: Post) {
+        if let index = posts.firstIndex(where: { $0 == post}) {
             posts[index].saved = post.saved
             updatePostSaveStatus(for: posts[index])
         }
     }
     
-    private func removePostFromViewIfNecessary(_ post: RedditPost) {
+    private func removePostFromViewIfNecessary(_ post: Post) {
         // remove the post from feed in "show only saved" mode
         if showOnlySaved {
-            posts.removeAll { $0.data.id == post.data.id && !$0.saved }
+            posts.removeAll { $0 == post && !$0.saved }
         }
         
-        allSavedPosts.removeAll { $0.data.id == post.data.id }
+        allSavedPosts.removeAll { $0 == post }
     }
     
 }

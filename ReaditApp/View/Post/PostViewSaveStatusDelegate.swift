@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PostViewSaveStatusDelegate: AnyObject {
-    func postViewDidRequestChangeSaveStatus(for post: RedditPost)
+    func postViewDidRequestChangeSaveStatus(for post: Post)
 }

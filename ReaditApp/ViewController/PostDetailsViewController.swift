@@ -10,12 +10,13 @@ import Kingfisher
 import SwiftUI
 
 class PostDetailsViewController: UIViewController {
+    
     // MARK: - IBOutlets
     @IBOutlet private weak var postView: PostView!
     @IBOutlet private weak var containerView: UIView!
     
     // MARK: - Properties & data
-    var redditPost: RedditPost?
+    var post: Post?
     var commentCoordinator: CommentCoordinator?
     
     // MARK: - Lifecycle
@@ -25,11 +26,11 @@ class PostDetailsViewController: UIViewController {
         
         commentCoordinator = CommentCoordinator(navigationController: self.navigationController)
         
-        guard let redditPost = redditPost else { return }
+        guard let redditPost = post else { return }
         
         let commentListView = CommentListView(
             subredditTopic: PostListViewController.Const.subredditTopic,
-            postId: redditPost.data.id,
+            postId: redditPost.id,
             onCommentSelected: { [weak self] comment in
                 self?.commentCoordinator?.navigateToCommentDetails(comment)
             }
@@ -51,7 +52,7 @@ class PostDetailsViewController: UIViewController {
     }
     
     func configure() {
-        if let redditPost = redditPost {
+        if let redditPost = post {
             postView.configure(with: redditPost)
             postView.sharingDelegate = self
             postView.saveStatusDelegate = self
@@ -84,9 +85,9 @@ extension PostDetailsViewController: PostViewSharingDelegate {
 
 extension PostDetailsViewController: PostViewSaveStatusDelegate {
     
-    func postViewDidRequestChangeSaveStatus(for post: RedditPost) {
+    func postViewDidRequestChangeSaveStatus(for post: Post) {
         updatePostSaveStatus(for: post)
-        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["id": post.data.id, "isSaved": post.saved])
+        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["id": post.id, "isSaved": post.saved])
     }
     
 }

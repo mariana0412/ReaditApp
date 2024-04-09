@@ -18,7 +18,7 @@ extension UIViewController {
         present(activityViewController, animated: true, completion: nil)
     }
     
-    func updatePostSaveStatus(for post: RedditPost) {
+    func updatePostSaveStatus(for post: Post) {
         if post.saved {
             PostStorageManager.shared.save(post: post)
         } else {

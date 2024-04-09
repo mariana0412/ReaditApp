@@ -25,8 +25,7 @@ struct CommentDTO: Decodable {
     }
 
     func toComment() -> Comment? {
-        guard let username = username,
-              let text = text,
+        guard let text = text,
               let createdAt = createdAt,
               let permalink = permalink,
               let url = URL(string: "https://www.reddit.com\(permalink)")
@@ -35,7 +34,7 @@ struct CommentDTO: Decodable {
         let ratings = (ups ?? 0) - (downs ?? 0)
         
         return Comment(
-            username: "/u/\(username)",
+            username: username ?? "unknown",
             text: text,
             ratings: ratings,
             timeAgo: DateUtils.convertTimePassed(from: createdAt),
