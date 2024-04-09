@@ -8,5 +8,5 @@
 import Foundation
 
 protocol PostViewCommentsDelegate: AnyObject {
-    func postViewDidRequestComments(for post: RedditPost)
+    func postViewDidRequestComments(for post: Post)
 }

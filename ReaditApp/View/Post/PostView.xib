@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="22505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22504"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -98,15 +98,15 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="bPZ-Uc-2dg">
                             <rect key="frame" x="5" y="260.66666666666669" width="383" height="34.333333333333314"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4A-We-H5H">
-                                    <rect key="frame" x="0.0" y="0.0" width="125" height="34.333333333333336"/>
-                                    <state key="normal" title="Button"/>
-                                    <buttonConfiguration key="configuration" style="plain" image="arrowshape.up.fill" catalog="system" title=" 1.0k">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="c4A-We-H5H">
+                                    <rect key="frame" x="0.0" y="0.0" width="125.33333333333333" height="34.333333333333336"/>
+                                    <state key="normal" title="Button" backgroundImage="hand.thumbsup.fill" catalog="system"/>
+                                    <buttonConfiguration key="configuration" style="plain" image="hand.thumbsup.fill" catalog="system" title=" 1.0k">
                                         <color key="baseForegroundColor" systemColor="systemGrayColor"/>
                                     </buttonConfiguration>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dlb-FC-eGq">
-                                    <rect key="frame" x="125" y="0.0" width="113" height="34.333333333333336"/>
+                                    <rect key="frame" x="125.33333333333334" y="0.0" width="113" height="34.333333333333336"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="square.and.pencil" catalog="system" title=" 85">
                                         <color key="baseForegroundColor" systemColor="systemGrayColor"/>
@@ -116,7 +116,7 @@
                                     </connections>
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IpK-f7-hPc">
-                                    <rect key="frame" x="238" y="0.0" width="145" height="34.333333333333336"/>
+                                    <rect key="frame" x="238.33333333333337" y="0.0" width="144.66666666666663" height="34.333333333333336"/>
                                     <state key="normal" title="Button"/>
                                     <buttonConfiguration key="configuration" style="plain" image="square.and.arrow.up" catalog="system" title=" Share">
                                         <color key="baseForegroundColor" systemColor="systemGrayColor"/>
@@ -165,8 +165,8 @@
         </view>
     </objects>
     <resources>
-        <image name="arrowshape.up.fill" catalog="system" width="123" height="128"/>
         <image name="bookmark" catalog="system" width="110" height="128"/>
+        <image name="hand.thumbsup.fill" catalog="system" width="128" height="121"/>
         <image name="photo" catalog="system" width="128" height="93"/>
         <image name="square.and.arrow.up" catalog="system" width="108" height="128"/>
         <image name="square.and.pencil" catalog="system" width="128" height="121"/>

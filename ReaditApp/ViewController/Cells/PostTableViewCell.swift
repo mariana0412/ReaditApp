@@ -21,7 +21,7 @@ class PostTableViewCell: UITableViewCell {
     }
     
     // MARK: - Config
-    func configure(post: RedditPost) {
+    func configure(post: Post) {
         postView.configure(with: post)
     }
 

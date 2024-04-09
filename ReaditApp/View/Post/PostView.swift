@@ -11,30 +11,30 @@ class PostView: UIView {
     
     let kCONTENT_XIB_NAME = "PostView"
     
-    @IBOutlet weak var contentView: UIView!
-    @IBOutlet weak var username: UILabel!
-    @IBOutlet weak var timePassed: UILabel!
-    @IBOutlet weak var domain: UILabel!
-    @IBOutlet weak var postTitle: UILabel!
-    @IBOutlet weak var postImage: UIImageView!
-    @IBOutlet weak var rating: UIButton!
-    @IBOutlet weak var commentsNumber: UIButton!
-    @IBOutlet weak var bookmark: UIButton!
+    @IBOutlet private weak var contentView: UIView!
+    @IBOutlet private weak var username: UILabel!
+    @IBOutlet private weak var timePassed: UILabel!
+    @IBOutlet private weak var domain: UILabel!
+    @IBOutlet private weak var postTitle: UILabel!
+    @IBOutlet private weak var postImage: UIImageView!
+    @IBOutlet private weak var rating: UIButton!
+    @IBOutlet private weak var commentsNumber: UIButton!
+    @IBOutlet private weak var bookmark: UIButton!
     
-    private var redditPost: RedditPost?
+    private var redditPost: Post?
     private var bookmarkLayer: CAShapeLayer?
     
     weak var sharingDelegate: PostViewSharingDelegate?
     weak var saveStatusDelegate: PostViewSaveStatusDelegate?
     weak var commentsDelegate: PostViewCommentsDelegate?
     
-    @IBAction func sharePost(_ sender: Any) {
+    @IBAction private func sharePost(_ sender: Any) {
         if let post = redditPost {
-            sharingDelegate?.postViewDidRequestShare(withURL: post.data.url)
+            sharingDelegate?.postViewDidRequestShare(withURL: post.url)
         }
     }
     
-    @IBAction func toggleSave(_ sender: Any) {
+    @IBAction private func toggleSave(_ sender: Any) {
         guard var post = redditPost else { return }
         post.saved.toggle()
         
@@ -44,7 +44,7 @@ class PostView: UIView {
         updateBookmarkImage()
     }
     
-    @IBAction func seeComments(_ sender: Any) {
+    @IBAction private func seeComments(_ sender: Any) {
         if let post = redditPost {
             commentsDelegate?.postViewDidRequestComments(for: post)
         }
@@ -72,18 +72,18 @@ class PostView: UIView {
         setupDoubleTapGesture()
     }
     
-    func configure(with post: RedditPost) {
+    func configure(with post: Post) {
         self.redditPost = post
         
-        username.text = "u/\(post.data.username)"
-        postTitle.text = post.data.title
-        timePassed.text = post.data.timePassed
-        domain.text = post.data.domain
-        rating.setTitle(String(post.data.rating), for: .normal)
-        commentsNumber.setTitle(String(post.data.commentsNumber), for: .normal)
+        username.text = "u/\(post.username)"
+        postTitle.text = post.title
+        timePassed.text = post.timePassed
+        domain.text = post.domain
+        rating.setTitle(String(post.rating), for: .normal)
+        commentsNumber.setTitle(String(post.commentsNumber), for: .normal)
         
         postImage.image = UIImage(systemName: "photo.fill")
-        if let url = URL(string: post.data.imageURL) {
+        if let url = URL(string: post.imageURL) {
             postImage.kf.setImage(with: url, placeholder: UIImage(systemName: "photo.fill"))
         }
         

@@ -9,7 +9,7 @@ import Foundation
 
 class PostStorageManager {
     
-    static let shared = PostStorageManager()  // Singleton
+    static let shared = PostStorageManager()
     
     struct Const {
         static let fileName = "savedPosts.json"
@@ -21,7 +21,7 @@ class PostStorageManager {
         return documentDirectoryUrls[0].appendingPathComponent(Const.fileName)
     }()
     
-    func save(post: RedditPost) {
+    func save(post: Post) {
         var savedPosts = loadPosts()
         
         if !savedPosts.contains(post) {
@@ -30,14 +30,14 @@ class PostStorageManager {
         }
     }
     
-    func unsave(post: RedditPost) {
+    func unsave(post: Post) {
         var savedPosts = loadPosts()
         savedPosts.removeAll { $0 == post }
         
         savePosts(savedPosts)
     }
     
-    func savePosts(_ posts: [RedditPost]) {
+    func savePosts(_ posts: [Post]) {
         do {
             let data = try JSONEncoder().encode(posts)
             try data.write(to: fileUrl, options: .atomic)
@@ -46,10 +46,10 @@ class PostStorageManager {
         }
     }
     
-    func loadPosts() -> [RedditPost] {
+    func loadPosts() -> [Post] {
         do {
             let data = try Data(contentsOf: fileUrl)
-            return try JSONDecoder().decode([RedditPost].self, from: data)
+            return try JSONDecoder().decode([Post].self, from: data)
         } catch {
             print("Error occured while loading posts: \(error)")
             return []
