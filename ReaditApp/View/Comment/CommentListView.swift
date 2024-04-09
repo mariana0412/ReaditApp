@@ -17,19 +17,23 @@ struct CommentListView: View {
     @State private var comments: [Comment] = []
     @State private var isLoadingMoreComments = false
     @Environment(\.colorScheme) var colorScheme
+    @State private var showingDetail = false
+    @State private var selectedComment: Comment?
     
     var apiService = CommentService()
+    var onCommentSelected: ((Comment) -> Void)?
     
     var body: some View {
         NavigationView {
             List(comments.indices, id: \.self) { index in
                 let comment = comments[index]
                 
-                NavigationLink {
-                    CommentDetailsView(comment: comment)
-                } label: {
+                Button(action: {
+                    self.onCommentSelected?(comment)
+                }) {
                     CommentView(comment: comment)
                 }
+                
                 .listRowBackground(colorScheme == .light ? Color(UIColor(red: 253, green: 223, blue: 194)) : Color(UIColor(red: 70, green: 61, blue: 54)))
                 .foregroundStyle(colorScheme == .light ? Color.black : Color.white)
                 .onAppear {
@@ -49,7 +53,6 @@ struct CommentListView: View {
         Task {
             do {
                 comments = try await apiService.fetchComments(subreddit: Const.subredditTopic, postId: Const.postId)
-                print("comments.count: \(comments.count)")
             } catch {
                 print("Failed to fetch comments: \(error)")
             }

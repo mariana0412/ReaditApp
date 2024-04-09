@@ -213,10 +213,10 @@
 		CAA682532BC48AEB00EA3121 /* Comment */ = {
 			isa = PBXGroup;
 			children = (
-				CAA682582BC48AF300EA3121 /* CommentView.swift */,
 				CAA682572BC48AF300EA3121 /* CommentListView.swift */,
-				CAA682542BC48AF300EA3121 /* CommentHeaderView.swift */,
 				CAA682552BC48AF300EA3121 /* CommentDetailsView.swift */,
+				CAA682582BC48AF300EA3121 /* CommentView.swift */,
+				CAA682542BC48AF300EA3121 /* CommentHeaderView.swift */,
 				CAA682562BC48AF300EA3121 /* CommentRatingView.swift */,
 			);
 			path = Comment;
