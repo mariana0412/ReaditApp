@@ -11,11 +11,11 @@ struct CommentListView: View {
     
     @State private var comments: [Comment] = []
     @State private var isLoadingMoreComments = false
-    @Environment(\.colorScheme) var colorScheme
+    @Environment(\.colorScheme) private var colorScheme
     @State private var showingDetail = false
     @State private var selectedComment: Comment?
     
-    let commentService = CommentService()
+    private let commentService = CommentService()
     
     let subredditTopic: String
     let postId: String
