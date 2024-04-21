@@ -18,6 +18,7 @@ class PostDetailsViewController: UIViewController {
     // MARK: - Properties & data
     var post: Post?
     var commentCoordinator: CommentCoordinator?
+    weak var delegate: PostDetailsUpdateDelegate?
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -75,19 +76,17 @@ class PostDetailsViewController: UIViewController {
 
 }
 
-extension PostDetailsViewController: PostViewSharingDelegate {
-    
-    func postViewDidRequestShare(withURL url: String) {
+extension PostDetailsViewController: PostSharingDelegate {
+    func didRequestSharePost(withURL url: String) {
         share(url: url)
     }
     
 }
 
-extension PostDetailsViewController: PostViewSaveStatusDelegate {
-    
-    func postViewDidRequestChangeSaveStatus(for post: Post) {
+extension PostDetailsViewController: PostSaveStatusDelegate {
+    func didRequestChangeSaveStatus(for post: Post) {
         updatePostSaveStatus(for: post)
-        NotificationCenter.default.post(name: .postSavedStatusChanged, object: nil, userInfo: ["id": post.id, "isSaved": post.saved])
+        delegate?.didUpdateSaveStatus(post: post)
     }
     
 }

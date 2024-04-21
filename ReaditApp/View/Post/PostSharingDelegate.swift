@@ -7,6 +7,7 @@
 
 import Foundation
 
-protocol PostViewSharingDelegate: AnyObject {
-    func postViewDidRequestShare(withURL url: String)
+protocol PostSharingDelegate: AnyObject {
+    func didRequestSharePost(withURL url: String)
 }
+

@@ -24,13 +24,13 @@ class PostView: UIView {
     private var redditPost: Post?
     private var bookmarkLayer: CAShapeLayer?
     
-    weak var sharingDelegate: PostViewSharingDelegate?
-    weak var saveStatusDelegate: PostViewSaveStatusDelegate?
-    weak var commentsDelegate: PostViewCommentsDelegate?
+    weak var sharingDelegate: PostSharingDelegate?
+    weak var saveStatusDelegate: PostSaveStatusDelegate?
+    weak var commentsDelegate: PostCommentsDelegate?
     
     @IBAction private func sharePost(_ sender: Any) {
         if let post = redditPost {
-            sharingDelegate?.postViewDidRequestShare(withURL: post.url)
+            sharingDelegate?.didRequestSharePost(withURL: post.url)
         }
     }
     
@@ -38,7 +38,7 @@ class PostView: UIView {
         guard var post = redditPost else { return }
         post.saved.toggle()
         
-        saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post)
+        saveStatusDelegate?.didRequestChangeSaveStatus(for: post)
         redditPost?.saved = post.saved
         
         updateBookmarkImage()
@@ -46,7 +46,7 @@ class PostView: UIView {
     
     @IBAction private func seeComments(_ sender: Any) {
         if let post = redditPost {
-            commentsDelegate?.postViewDidRequestComments(for: post)
+            commentsDelegate?.didRequestViewComments(for: post)
         }
     }
     
@@ -116,7 +116,7 @@ class PostView: UIView {
         
         if shouldSave {
             post.saved = true
-            saveStatusDelegate?.postViewDidRequestChangeSaveStatus(for: post)
+            saveStatusDelegate?.didRequestChangeSaveStatus(for: post)
         }
         redditPost?.saved = true
         

@@ -65,25 +65,8 @@ class PostListViewController: UIViewController {
         
         setSubredditLabel()
         fetchPosts()
-        
-        // observe post changes on other screen
-        NotificationCenter.default.addObserver(self, selector: #selector(handlePostSavedStatusChanged(notification:)), name: .postSavedStatusChanged, object: nil)
     }
-    
-    @objc func handlePostSavedStatusChanged(notification: Notification) {
-        guard let id = notification.userInfo?["id"] as? String,
-              let isSaved = notification.userInfo?["isSaved"] as? Bool else { return }
-
-        // find the post in array by id and update its status
-        if let index = posts.firstIndex(where: { $0.id == id }) {
-            posts[index].saved = isSaved
-            
-            // update UI
-            let indexPath = IndexPath(row: index, section: 0)
-            tableView.reloadRows(at: [indexPath], with: .none)
-        }
-    }
-    
+   
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -109,6 +92,7 @@ class PostListViewController: UIViewController {
             let postVC = segue.destination as! PostDetailsViewController
             if let selectedPost = self.selectedPost {
                 postVC.post = selectedPost
+                postVC.delegate = self
             } else {
                 print("No post selected")
             }
@@ -220,26 +204,24 @@ extension PostListViewController: UITableViewDelegate {
 
 }
 
-extension PostListViewController: PostViewSharingDelegate {
-    
-    func postViewDidRequestShare(withURL url: String) {
+extension PostListViewController: PostSharingDelegate {
+    func didRequestSharePost(withURL url: String) {
         share(url: url)
     }
     
 }
 
-extension  PostListViewController: PostViewCommentsDelegate {
+extension  PostListViewController: PostCommentsDelegate {
     
-    func postViewDidRequestComments(for post: Post) {
+    func didRequestViewComments(for post: Post) {
         self.selectedPost = post
         self.performSegue(withIdentifier: Const.goToPostViewSegueID, sender: self)
     }
     
 }
 
-extension PostListViewController: PostViewSaveStatusDelegate {
-    
-    func postViewDidRequestChangeSaveStatus(for post: Post) {
+extension PostListViewController: PostSaveStatusDelegate {
+    func didRequestChangeSaveStatus(for post: Post) {
         updateSaveStatus(for: post)
         removePostFromViewIfNecessary(post)
         tableView.reloadData()
@@ -259,6 +241,17 @@ extension PostListViewController: PostViewSaveStatusDelegate {
         }
         
         allSavedPosts.removeAll { $0 == post }
+    }
+    
+}
+
+extension PostListViewController: PostDetailsUpdateDelegate {
+    func didUpdateSaveStatus(post: Post) {
+        if let index = posts.firstIndex(where: { $0.id == post.id }) {
+            posts[index].saved = post.saved
+            let indexPath = IndexPath(row: index, section: 0)
+            tableView.reloadRows(at: [indexPath], with: .none)
+        }
     }
     
 }

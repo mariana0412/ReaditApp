@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PostViewCommentsDelegate: AnyObject {
-    func postViewDidRequestComments(for post: Post)
+protocol PostCommentsDelegate: AnyObject {
+    func didRequestViewComments(for post: Post)
 }

@@ -7,6 +7,6 @@
 
 import Foundation
 
-protocol PostViewSaveStatusDelegate: AnyObject {
-    func postViewDidRequestChangeSaveStatus(for post: Post)
+protocol PostSaveStatusDelegate: AnyObject {
+    func didRequestChangeSaveStatus(for post: Post)
 }
