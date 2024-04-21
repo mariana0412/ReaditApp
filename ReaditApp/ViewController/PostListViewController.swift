@@ -1,4 +1,3 @@
-//
 //  PostListViewController.swift
 //  ReaditApp
 //
@@ -39,7 +38,7 @@ class PostListViewController: UIViewController {
         saved.setImage(UIImage(systemName: iconName), for: .normal)
         
         if showOnlySaved {
-            allSavedPosts = PostStorageManager.shared.loadPosts()
+            allSavedPosts = PostStorageManager.shared.getSavedPosts()
             posts = allSavedPosts
             searchBar.becomeFirstResponder() // bring up the keyboard
         } else {
@@ -91,7 +90,7 @@ class PostListViewController: UIViewController {
         searchBar.text = ""
         
         if showOnlySaved {
-            allSavedPosts = PostStorageManager.shared.loadPosts()
+            allSavedPosts = PostStorageManager.shared.getSavedPosts()
             posts = allSavedPosts
             tableView.reloadData()
         }
@@ -160,7 +159,7 @@ class PostListViewController: UIViewController {
     }
     
     private func updatePostsSavedStatus() {
-        let savedPostsIds = PostStorageManager.shared.loadPosts().map { $0.id }
+        let savedPostsIds = PostStorageManager.shared.getSavedPosts().map { $0.id }
         self.posts = self.posts.map { post in
             var modifiedPost = post
             modifiedPost.saved = savedPostsIds.contains(post.id)
