@@ -4,6 +4,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
@@ -79,16 +80,16 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="htM-SZ-gdP">
-                                <rect key="frame" x="0.0" y="103" width="393" height="35"/>
+                                <rect key="frame" x="0.0" y="103" width="393" height="40"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="/r/iOS" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ra9-sl-B0a">
-                                        <rect key="frame" x="166.33333333333334" y="3.3333333333333304" width="60.666666666666657" height="28.666666666666671"/>
+                                        <rect key="frame" x="166.33333333333334" y="5.6666666666666732" width="60.666666666666657" height="28.666666666666671"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="24"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4fb-zP-3LC">
-                                        <rect key="frame" x="342" y="-4.3333333333333286" width="44" height="44"/>
+                                        <rect key="frame" x="342" y="-2" width="44" height="44"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="O4H-uD-hYj"/>
                                             <constraint firstAttribute="width" constant="44" id="ro1-lZ-k36"/>
@@ -97,7 +98,9 @@
                                         <state key="normal" image="bookmark.circle" catalog="system">
                                             <color key="titleColor" systemColor="systemGrayColor"/>
                                         </state>
-                                        <buttonConfiguration key="configuration" style="plain" image="bookmark.circle" catalog="system">
+                                        <buttonConfiguration key="configuration" style="plain">
+                                            <imageReference key="image" image="bookmark.circle" catalog="system" variableValue="0.80000000000000004"/>
+                                            <preferredSymbolConfiguration key="preferredSymbolConfigurationForImage" configurationType="pointSize" pointSize="25"/>
                                             <color key="baseForegroundColor" systemColor="secondaryLabelColor"/>
                                         </buttonConfiguration>
                                         <connections>
@@ -108,14 +111,14 @@
                                 <color key="backgroundColor" systemColor="placeholderTextColor"/>
                                 <constraints>
                                     <constraint firstItem="ra9-sl-B0a" firstAttribute="centerX" secondItem="htM-SZ-gdP" secondAttribute="centerX" id="4tM-a2-xLT"/>
-                                    <constraint firstAttribute="height" constant="35" id="6wx-Jk-Hw2"/>
+                                    <constraint firstAttribute="height" constant="40" id="6wx-Jk-Hw2"/>
                                     <constraint firstAttribute="trailing" secondItem="4fb-zP-3LC" secondAttribute="trailing" constant="7" id="Q3G-K3-Qzk"/>
                                     <constraint firstItem="4fb-zP-3LC" firstAttribute="centerY" secondItem="htM-SZ-gdP" secondAttribute="centerY" id="aHP-4W-XBj"/>
                                     <constraint firstItem="ra9-sl-B0a" firstAttribute="centerY" secondItem="htM-SZ-gdP" secondAttribute="centerY" id="uoi-40-XqG"/>
                                 </constraints>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="j7E-Om-lWg">
-                                <rect key="frame" x="0.0" y="138" width="393" height="680"/>
+                                <rect key="frame" x="0.0" y="143" width="393" height="675"/>
                                 <subviews>
                                     <textField hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Zf-aG-TkI">
                                         <rect key="frame" x="0.0" y="-34" width="393" height="34"/>
@@ -129,7 +132,7 @@
                                         </connections>
                                     </textField>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="84N-nL-h9V">
-                                        <rect key="frame" x="0.0" y="0.0" width="393" height="680"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="393" height="675"/>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="post" rowHeight="300" id="tyH-aB-rgU" customClass="PostTableViewCell" customModule="ReaditApp" customModuleProvider="target">
@@ -199,7 +202,7 @@
             <objects>
                 <viewController id="Cyk-jU-S07" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="fSy-6V-WLJ">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="749"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="449"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="NFK-ZQ-jIl"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
