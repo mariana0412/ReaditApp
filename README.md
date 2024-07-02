@@ -4,41 +4,38 @@ ReaditApp is a streamlined Reddit browsing application for iOS that offers users
 Built using <b>UIKit</b> and <b>SwiftUI</b>, this app is designed with both functionality and user experience in mind, featuring API-based Reddit post retrieval, seamless navigation, 
 and robust offline capabilities.
 
-<div align="center">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493348/basic_wsjce2.png" width="300" alt="Main screen with favorites selected">
-</div>
+<table>
+  <tr>
+    <td><img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1719949539/basic-portrait_w3gk19.png" alt="Home Screen" width="200"></td>
+    <td><img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1719949539/search-portrait_suvfqy.png" alt="Favorites with Search" width="200"/></td>
+    <td><img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1719949539/comments-basic-portrait_kdvfge.png" alt="Comments" width="200"/></td>
+    <td><img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1719949540/share-post-portrait_ghkrge.png" alt="Share Post" width="200"/></td>
+  </tr>
+</table>
 
 ## Features
 
 - <b>API-based</b> Reddit Post Retrieval: Fetch and display Reddit posts and comments in real-time
 - <b>Favorites:</b> Keep track of your favorite posts by adding them to your favorites list
-<div align="left">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493348/set-favorites_gw9te1.png" width="300" alt="Main screen with favorites selected">
-</div>
-
 - <b>Offline Access:</b> Your favorites posts are stored locally for offline access
-<div align="left">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493349/favorites_dt4d43.png" width="300" alt="Favorites available offline">
-</div>
-
 - <b>Search Functionality:</b> Efficiently find posts among favorite ones by their text
-<div align="left">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493349/search_optmg5.png" width="300" alt="Searh among favorites">
-</div>
-
 - <b>Sharing:</b> Share specific posts and comments with others
-<p float="center">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493349/share-post_bnts04.png" width="300" alt="Share a post">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493348/share-comment_i6kviq.png" width="300" alt="Share a comment">
-</p>
-
-- <b>Dark and Light Mode Support:</b> Catering to user preference and accessibility, ReaditApp supports both dark and light modes, adapting to the system settings of the user's device
-<p align="left">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493349/posts-dark_yburow.png" width="300" alt="Posts view in dark mode">
-  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1712493348/comments-dark_x07xsf.png" width="300" alt="Comments view in dark mode">
-</p>
-
 - <b>Paging:</b> Posts and comments are fetched and displayed dynamically, ceasing when the end of the topic is reached
+- <b>Dark and Light Mode Support:</b> Catering to user preference and accessibility, ReaditApp supports both dark and light modes, adapting to the system settings of the user's device
+<p align="center">
+  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1719949496/posts-dark-portrait_mc5epx.png" alt="Posts view in dark mode" width="200">
+  <img src="https://res.cloudinary.com/df9uihxz1/image/upload/v1719949495/comments-dark-portrait_akhaqj.png" alt="Comments view in dark mode" width="200"/>
+</p>
+
+## Technologies Used
+
+- UIKit: For displaying posts
+- SwiftUI: For displaying comments
+- CocoaPods: For managing project dependencies and libraries
+- Kingfisher: For working with images
+  
+## API
+[Reddit API](https://www.reddit.com/dev/api/) is used to fetch and display Reddit posts and comments in real-time
 
 ## Requirements
 
